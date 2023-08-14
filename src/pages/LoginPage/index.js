@@ -38,13 +38,13 @@ function LoginPage() {
       })
       .finally(() => mounted.current && setIsSubmitting(false));
   };
-  
+
   function togglePasswordVisibility() {
     setVisible(!visible);
   }
 
   useEffect(() => {
-    document.title = 'Tomper Wear | Login';
+    document.title = 'Smartkart | Login';
   }, []);
 
   return (

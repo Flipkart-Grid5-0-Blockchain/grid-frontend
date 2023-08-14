@@ -51,22 +51,22 @@ const CheckoutForm = () => {
     },
   };
 
-  const createPaymentIntent = async () => {
-    try {
-      const { data } = await axios.post(url, {
-        cart,
-        shipping_fee,
-        total_amount,
-        shipping: {
-          name: shipping.name,
-          address: shipping.address,
-        },
-      });
-      setClientSecret(data.clientSecret);
-    } catch (error) {
-      toast.error('Some error occured while connecting to the payment gateway');
-    }
-  };
+  // const createPaymentIntent = async () => {
+  //   try {
+  //     const { data } = await axios.post(url, {
+  //       cart,
+  //       shipping_fee,
+  //       total_amount,
+  //       shipping: {
+  //         name: shipping.name,
+  //         address: shipping.address,
+  //       },
+  //     });
+  //     setClientSecret(data.clientSecret);
+  //   } catch (error) {
+  //     toast.error('Some error occured while connecting to the payment gateway');
+  //   }
+  // };
 
   const handleChange = async (event) => {
     setDisabled(event.empty);
@@ -77,16 +77,16 @@ const CheckoutForm = () => {
     ev.preventDefault();
     setProcessing(true);
 
-    const payload = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement),
-      },
-    });
+    // const payload = await stripe.confirmCardPayment(clientSecret, {
+    //   payment_method: {
+    //     card: elements.getElement(CardElement),
+    //   },
+    // });
 
-    if (payload.error) {
-      setError(`Payment failed: ${payload.error.message}`);
-      setProcessing(false);
-    } else {
+    // if (payload.error) {
+    //   setError(`Payment failed: ${payload.error.message}`);
+    //   setProcessing(false);
+    // } else {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
@@ -95,13 +95,13 @@ const CheckoutForm = () => {
         clearCart();
         history.push('/orders');
       }, 5000);
-    }
+    // }
   };
 
-  useEffect(() => {
-    createPaymentIntent();
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   createPaymentIntent();
+  //   // eslint-disable-next-line
+  // }, []);
 
   return (
     <div>
