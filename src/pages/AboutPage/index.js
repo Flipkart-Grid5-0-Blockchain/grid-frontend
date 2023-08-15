@@ -5,7 +5,7 @@ import aboutImg from '../../assets/hero-bcg.jpeg';
 
 const AboutPage = () => {
   useEffect(() => {
-    document.title = 'Tomper Wear | About';
+    document.title = 'Smartkart | About';
   }, []);
 
   return (
@@ -19,9 +19,9 @@ const AboutPage = () => {
             <div className='underline'></div>
           </div>
           <p>
-            TomperWear was started by Varun Tiwar in December'21, with an aim to
+            Smartkart was started by Varun Tiwar in December'21, with an aim to
             build a strong infrastructure for small bussiness owners to expand
-            their reach, by bringing their products online. Today TomperWear is
+            their reach, by bringing their products online. Today Smartkart is
             used by hundreds of shop owners to expand their bussiness. This is
             possible just due to your trust, support and our constant efforts to
             make the platform even better. We are working tirelessly to improve
