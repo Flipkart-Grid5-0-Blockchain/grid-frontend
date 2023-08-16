@@ -18,6 +18,7 @@ import {
   OrdersPage,
   PrivateRoute,
   ProfilePage,
+  SellerAdmin,
 } from './pages';
 
 function App() {
@@ -35,6 +36,9 @@ function App() {
           <Switch>
             <Route exact path='/'>
               <Home />
+            </Route>
+            <Route exact path='/seller-admin'>
+              <SellerAdmin />
             </Route>
             <Route exact path='/about'>
               <About />

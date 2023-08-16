@@ -12,6 +12,7 @@ import Error from './ErrorPage/';
 import OrdersPage from './OrdersPage/';
 import PrivateRoute from './PrivateRoute/';
 import ProfilePage from './ProfilePage/';
+import SellerAdmin from './SellerAdmin';
 
 export {
   Home,
@@ -28,4 +29,5 @@ export {
   OrdersPage,
   PrivateRoute,
   ProfilePage,
+  SellerAdmin,
 };

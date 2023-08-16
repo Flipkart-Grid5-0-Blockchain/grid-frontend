@@ -25,8 +25,23 @@ import ReviewModal from './ReviewModal/';
 import ReviewStars from './ReviewStars/';
 import UserReview from './UserReview/';
 import ErrorBoundary from './ErrorBoundary/';
+import SellerSidebar from './SellerSidebar';
+import Card from './Card';
+import Cards from './Cards';
+import CustomerReview from './CustomerReview';
+import MainDash from './MainDash';
+import RightSide from './RightSide';
+import BasicTable from './Table';
+import Updates from './Updates';
 export {
   FeaturedProducts,
+  Card,
+  Cards,
+  CustomerReview,
+  MainDash,
+  RightSide,
+  BasicTable,
+  Updates,
   Navbar,
   CartButtons,
   Footer,
@@ -53,4 +68,5 @@ export {
   ReviewStars,
   UserReview,
   ErrorBoundary,
+  SellerSidebar,
 };
