@@ -27,8 +27,7 @@ const SingleProductPage = () => {
   } = useProductsContext();
 
   useEffect(() => {
-    fetchSingleProduct(`${id}`);
-    console.log("product",product)
+    fetchSingleProduct(`${url}${id}`);
     // eslint-disable-next-line
   }, [id]);
 
@@ -55,7 +54,7 @@ const SingleProductPage = () => {
   } = product;
 
   useEffect(() => {
-    document.title = `Smartkart | ${name}`;
+    document.title = `Tomper Wear | ${name}`;
   }, [name]);
 
   if (loading) {

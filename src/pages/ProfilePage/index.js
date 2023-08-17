@@ -101,7 +101,7 @@ function ProfilePage() {
   };
 
   useEffect(() => {
-    document.title = 'Smartkart | Profile';
+    document.title = 'Tomper Wear | Profile';
   }, []);
 
   return (

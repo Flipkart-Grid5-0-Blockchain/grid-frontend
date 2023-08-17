@@ -8,7 +8,7 @@ const CartPage = () => {
   const { cart } = useCartContext();
 
   useEffect(() => {
-    document.title = 'Smartkart | Cart';
+    document.title = 'Tomper Wear | Cart';
   }, []);
 
   if (cart.length < 1) {

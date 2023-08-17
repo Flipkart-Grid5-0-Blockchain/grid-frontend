@@ -3,7 +3,7 @@ import { FeaturedProducts, Hero, Services, Contact } from '../../components';
 
 const HomePage = () => {
   useEffect(() => {
-    document.title = 'Smartkart| Home';
+    document.title = 'Tomper Wear | Home';
   }, []);
 
   return (

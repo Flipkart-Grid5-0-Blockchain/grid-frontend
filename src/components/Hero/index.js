@@ -13,7 +13,7 @@ const Hero = () => {
           wear more
         </h1>
         <p>
-          Smartkart is an e-commerce platform which sells wide variety of
+          TomperWear is an e-commerce platform which sells wide variety of
           clothing essentials. It is a one-stop destination for all your
           clothing needs.
         </p>

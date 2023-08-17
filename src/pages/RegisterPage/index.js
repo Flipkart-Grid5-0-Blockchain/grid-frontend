@@ -54,7 +54,7 @@ function RegisterPage() {
   }
 
   useEffect(() => {
-    document.title = 'Smartkart | Register';
+    document.title = 'Tomper Wear | Register';
   }, []);
 
   return (

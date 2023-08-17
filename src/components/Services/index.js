@@ -13,7 +13,7 @@ const Services = () => {
             Our command
           </h3>
           <p>
-            Customer satisfaction is the top-most priorty for Smartkart. It is
+            Customer satisfaction is the top-most priorty for TomperWear. It is
             the only the trust and support of our customers that we are now
             reaching greater heights.
           </p>
