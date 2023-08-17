@@ -31,7 +31,7 @@ function ForgotPasswordPage() {
   };
 
   useEffect(() => {
-    document.title = 'Tomper Wear | Forgot Password';
+    document.title = 'Smartkart | Forgot Password';
   }, []);
 
   return (

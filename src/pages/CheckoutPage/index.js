@@ -31,7 +31,7 @@ const CheckoutPage = () => {
   }, []);
 
   useEffect(() => {
-    document.title = 'Tomper Wear | Checkout';
+    document.title = 'Smartkart | Checkout';
   }, []);
 
   return (

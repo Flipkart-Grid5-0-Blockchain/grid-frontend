@@ -15,10 +15,10 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
             sizes: '(max-width: 576px) 300px, (min-width: 992px) 500px,',
             isFluidWidth: true,
             alt: 'main',
-            src: main.url,
+            src: images[0].url,
           },
           largeImage: {
-            src: main.url,
+            src: images[0].url,
             width: 1200,
             height: 1800,
           },

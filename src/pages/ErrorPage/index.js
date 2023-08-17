@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
   useEffect(() => {
-    document.title = 'Tomper Wear | Error';
+    document.title = 'Smartkart | Error';
   }, []);
 
   return (

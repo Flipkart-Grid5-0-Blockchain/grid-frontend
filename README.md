@@ -1,4 +1,4 @@
-<p align='center'>
+<!-- <p align='center'>
 <img src='./src/assets/logo.svg'  width='25%'>
 </p>
 <p align='center'>
@@ -220,7 +220,7 @@ This is privilege is ideal for the delivery-agent(s).
         <br/>
         GirlScript Summer of Code 2022 (GSSoC'22)
       </a>
-    </td> 
+    </td>
   </tr>
 </table>
 
@@ -235,7 +235,7 @@ This is privilege is ideal for the delivery-agent(s).
         <br/>
         Awarded as the <b>Best Web App</b> in <b>Winter Projects</b> organized by <b>GDSC</b> and <b>AASF</b>, IIITM, Gwalior
       </a>
-    </td> 
+    </td>
   </tr>
 </table>
 
@@ -252,7 +252,7 @@ This is privilege is ideal for the delivery-agent(s).
       <br/>
       <a href="https://www.linkedin.com/in/varun-tiwari-454591178/">LinkedIn</a>
       <a href="https://github.com/varunKT001">Github</a>
-    </td> 
+    </td>
   </tr>
 </table>
 
@@ -272,4 +272,4 @@ This is privilege is ideal for the delivery-agent(s).
 
 <p align='center'>
 (If you liked the project, give it star 😃)
-</p>
+</p> -->

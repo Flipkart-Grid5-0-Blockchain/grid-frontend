@@ -17,6 +17,112 @@ import {
 } from '../actions';
 import { useUserContext } from './user_context';
 
+const featured = [
+  {
+    id: 1,
+    name: 'Samsung Galaxy S21 Ultra 5G',
+    image:
+      'https://onsitego.com/blog/wp-content/uploads/2021/10/Samsung-Galaxy-S21-Ultra-With-Box.jpg',
+    price: 6499900,
+    images: [
+      {
+        url: 'https://onsitego.com/blog/wp-content/uploads/2021/10/Samsung-Galaxy-S21-Ultra-With-Box.jpg',
+        filename: 'product',
+      },
+    ],
+    description:
+      "The Galaxy S21 Ultra 5G is the ultimate self-expression smartphone that's designed to give you everything you could ever want in a smartphone. It's a massive leap forward in 5G, camera and display. And with the upgrade to an S Pen, pro-grade camera and the most advanced processor ever in a Galaxy, you won't be able to do anything but keep winning.",
+    rating: 4.5,
+    numberOfReviews: 0,
+    featured: true,
+    stock: 10,
+    company: 'Samsung',
+    reviews: [],
+    company_id: 1,
+    sizes: ['S', 'M', 'L', 'XL'],
+    category: 'tech',
+    colors: ['#ff0000', '#00ff00', '#0000ff'],
+    stars: 4.5,
+  },
+  {
+    id: 2,
+    name: 'Samsung Galaxy S21 Ultra 5G 2',
+    image:
+      'https://onsitego.com/blog/wp-content/uploads/2021/10/Samsung-Galaxy-S21-Ultra-With-Box.jpg',
+    price: 6499900,
+    images: [
+      {
+        url: 'https://onsitego.com/blog/wp-content/uploads/2021/10/Samsung-Galaxy-S21-Ultra-With-Box.jpg',
+        filename: 'product',
+      },
+    ],
+    description:
+      "The Galaxy S21 Ultra 5G is the ultimate self-expression smartphone that's designed to give you everything you could ever want in a smartphone. It's a massive leap forward in 5G, camera and display. And with the upgrade to an S Pen, pro-grade camera and the most advanced processor ever in a Galaxy, you won't be able to do anything but keep winning.",
+    rating: 4.5,
+    numberOfReviews: 0,
+    featured: true,
+    stock: 10,
+    company: 'Samsun',
+    reviews: [],
+    company_id: 2,
+    sizes: ['S', 'M', 'L', 'XL'],
+    category: 'Phones',
+    colors: ['#ff0000', '#00ff00', '#0000ff'],
+    stars: 4.5,
+  },
+  {
+    id: 3,
+    name: 'Samsung Galaxy S21 Ultra 5G  3',
+    image:
+      'https://onsitego.com/blog/wp-content/uploads/2021/10/Samsung-Galaxy-S21-Ultra-With-Box.jpg',
+    price: 6499900,
+    images: [
+      {
+        url: 'https://onsitego.com/blog/wp-content/uploads/2021/10/Samsung-Galaxy-S21-Ultra-With-Box.jpg',
+        filename: 'product',
+      },
+    ],
+    description:
+      "The Galaxy S21 Ultra 5G is the ultimate self-expression smartphone that's designed to give you everything you could ever want in a smartphone. It's a massive leap forward in 5G, camera and display. And with the upgrade to an S Pen, pro-grade camera and the most advanced processor ever in a Galaxy, you won't be able to do anything but keep winning.",
+    rating: 4.5,
+    numberOfReviews: 0,
+    featured: true,
+    stock: 10,
+    company: 'Samsung',
+    reviews: [],
+    company_id: 3,
+    sizes: ['S', 'M', 'L', 'XL'],
+    category: 'tech',
+    colors: ['#ff0000', '#00ff00', '#0000ff'],
+    stars: 4.5,
+  },
+  {
+    id: 4,
+    name: 'Samsung Galaxy S21 Ultra 5G 4',
+    image:
+      'https://onsitego.com/blog/wp-content/uploads/2021/10/Samsung-Galaxy-S21-Ultra-With-Box.jpg',
+    price: 6499900,
+    images: [
+      {
+        url: 'https://onsitego.com/blog/wp-content/uploads/2021/10/Samsung-Galaxy-S21-Ultra-With-Box.jpg',
+        filename: 'product',
+      },
+    ],
+    description:
+      "The Galaxy S21 Ultra 5G is the ultimate self-expression smartphone that's designed to give you everything you could ever want in a smartphone. It's a massive leap forward in 5G, camera and display. And with the upgrade to an S Pen, pro-grade camera and the most advanced processor ever in a Galaxy, you won't be able to do anything but keep winning.",
+    rating: 4.5,
+    numberOfReviews: 0,
+    featured: true,
+    stock: 10,
+    company: 'Samsung',
+    reviews: [],
+    company_id: 4,
+    sizes: ['S', 'M', 'L', 'XL'],
+    category: 'tech',
+    colors: ['#ff0000', '#00ff00', '#0000ff'],
+    stars: 4.5,
+  },
+];
 const initialState = {
   isSidebarOpen: false,
   products_loading: false,
@@ -47,22 +153,30 @@ export const ProductsProvider = ({ children }) => {
   const fetchProducts = async (url) => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
-      const response = await axios.get(url);
-      const products = response.data;
-      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products.data });
+      // const response = await axios.get(url);
+      const products = featured;
+      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });
     }
   };
 
-  const fetchSingleProduct = async (url) => {
+  const fetchSingleProduct = async (id) => {
+    console.log(id);
     dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
-      const response = await axios.get(url);
-      const singleProduct = response.data;
+      // const response = await axios.get(url);
+      // const data = featured.filter((product) =>
+      // product.id === id
+      // );
+
+      const data = featured.filter(
+        (product) => parseInt(product.id) === parseInt(id)
+      );
+      const singleProduct = data[0];
       dispatch({
         type: GET_SINGLE_PRODUCT_SUCCESS,
-        payload: singleProduct.data,
+        payload: singleProduct,
       });
     } catch (error) {
       dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
