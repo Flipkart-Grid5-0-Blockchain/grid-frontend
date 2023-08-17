@@ -4,6 +4,7 @@ import ReactImageMagnify from 'react-image-magnify';
 
 const ProductImages = ({ images = [{ url: '' }] }) => {
   const [main, setMain] = useState(images[0]);
+
   return (
     <Wrapper>
       <ReactImageMagnify
@@ -14,10 +15,10 @@ const ProductImages = ({ images = [{ url: '' }] }) => {
             sizes: '(max-width: 576px) 300px, (min-width: 992px) 500px,',
             isFluidWidth: true,
             alt: 'main',
-            src: images[0].url,
+            src: main.url,
           },
           largeImage: {
-            src: images[0].url,
+            src: main.url,
             width: 1200,
             height: 1800,
           },

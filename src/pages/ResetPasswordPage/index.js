@@ -35,7 +35,7 @@ function ResetPasswordPage() {
   };
 
   useEffect(() => {
-    document.title = 'Smartkart | Reset Password';
+    document.title = 'Tomper Wear | Reset Password';
   }, []);
 
   return (

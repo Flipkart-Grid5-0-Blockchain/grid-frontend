@@ -12,7 +12,7 @@ const OrdersPage = () => {
   } = useOrderContext();
 
   useEffect(() => {
-    document.title = 'Smartkart | Orders';
+    document.title = 'Tomper Wear | Orders';
   }, []);
 
   if (loading) {

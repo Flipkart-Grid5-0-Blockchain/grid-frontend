@@ -18,6 +18,7 @@ import {
   OrdersPage,
   PrivateRoute,
   ProfilePage,
+  DashBoard,
 } from './pages';
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
             </Route>
             <PrivateRoute exact path='/login'>
               <Login />
+            </PrivateRoute>
+            <PrivateRoute exact path='/dash'>
+              <DashBoard />
             </PrivateRoute>
             <PrivateRoute exact path='/register'>
               <Register />

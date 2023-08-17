@@ -5,7 +5,7 @@
 <b>E-commerce web-application for selling clothing essentials</b>
 </p>
 <p align='center'>
-tomper<a href='https://-wear.netlify.app/' target='_blank'>tomper-wear.netlify.app</a>
+<a href='https://tomper-wear.netlify.app/' target='_blank'>tomper-wear.netlify.app</a>
 </p>
 
 ---
