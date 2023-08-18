@@ -42,6 +42,11 @@ const Nav = () => {
               <Link to='/orders'>orders</Link>
             </li>
           )}
+          {currentUser && (
+            <li>
+              <Link to='/dash'>DashBoard</Link>
+            </li>
+          )}
         </ul>
         <CartButtons />
       </div>

@@ -18,7 +18,7 @@ import {
   OrdersPage,
   PrivateRoute,
   ProfilePage,
-  SellerAdmin,
+  DashBoard,
 } from './pages';
 
 function App() {
@@ -37,9 +37,6 @@ function App() {
             <Route exact path='/'>
               <Home />
             </Route>
-            <Route exact path='/seller-admin'>
-              <SellerAdmin />
-            </Route>
             <Route exact path='/about'>
               <About />
             </Route>
@@ -51,6 +48,9 @@ function App() {
             </Route>
             <PrivateRoute exact path='/login'>
               <Login />
+            </PrivateRoute>
+            <PrivateRoute exact path='/dash'>
+              <DashBoard />
             </PrivateRoute>
             <PrivateRoute exact path='/register'>
               <Register />

@@ -28,24 +28,14 @@ export const links = [
 export const socialLinks = [
   {
     id: 1,
-    icon: (
-      <AiFillGithub
-        className='github'
-        color='var(--clr-primary-5)'
-        fontSize='2.5rem'
-      />
-    ),
+    icon: <AiFillGithub className='github' color='var(--clr-primary-5)' fontSize='2.5rem' />,
     text: 'GitHub',
     url: 'https://github.com/varunKT001/tomper-wear-ecommerce/',
   },
   {
     id: 2,
     icon: (
-      <AiFillLinkedin
-        className='linkedin'
-        color='var(--clr-primary-5)'
-        fontSize='2.5rem'
-      />
+      <AiFillLinkedin className='linkedin' color='var(--clr-primary-5)' fontSize='2.5rem' />
     ),
     text: 'LinkedIn',
     url: 'https://www.linkedin.com/in/varun-tiwari-454591178',
@@ -65,11 +55,7 @@ export const socialLinks = [
   {
     id: 4,
     icon: (
-      <AiFillYoutube
-        className='youtube'
-        color='var(--clr-primary-5)'
-        fontSize='2.5rem'
-      />
+      <AiFillYoutube className='youtube' color='var(--clr-primary-5)' fontSize='2.5rem' />
     ),
     text: 'YouTube',
     url: 'https://www.youtube.com/channel/UCUvO6rXuF7VuGhHQI94NIug',
@@ -115,13 +101,13 @@ export const services = [
     id: 2,
     icon: <GiDiamondHard />,
     title: 'vision',
-    text: 'Our vision is to take Smartkart to greater heights, by providing our customers best in class service.',
+    text: 'Our vision is to take TomperWear to greater heights, by providing our customers best in class service.',
   },
   {
     id: 3,
     icon: <GiStabbedNote />,
     title: 'history',
-    text: `Smartkart was started in December'21 with an initial aim to provide the best in class services to our customers.`,
+    text: `TomperWear was started in December'21 with an initial aim to provide the best in class services to our customers.`,
   },
 ];
 

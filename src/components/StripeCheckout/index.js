@@ -87,20 +87,20 @@ const CheckoutForm = () => {
     //   setError(`Payment failed: ${payload.error.message}`);
     //   setProcessing(false);
     // } else {
-      setError(null);
-      setProcessing(false);
-      setSucceeded(true);
-      await placeOrder();
-      setTimeout(() => {
-        clearCart();
-        history.push('/orders');
-      }, 5000);
-    // }
+    setError(null);
+    setProcessing(false);
+    setSucceeded(true);
+    await placeOrder();
+    setTimeout(() => {
+      clearCart();
+      history.push('/orders');
+    }, 5000);
+    //   }
   };
 
   // useEffect(() => {
-  //   createPaymentIntent();
-  //   // eslint-disable-next-line
+  // createPaymentIntent();
+  // eslint-disable-next-line
   // }, []);
 
   return (

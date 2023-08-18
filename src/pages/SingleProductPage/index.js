@@ -28,7 +28,6 @@ const SingleProductPage = () => {
 
   useEffect(() => {
     fetchSingleProduct(`${id}`);
-    console.log("product",product)
     // eslint-disable-next-line
   }, [id]);
 

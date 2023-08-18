@@ -4,6 +4,7 @@ import ReactImageMagnify from 'react-image-magnify';
 
 const ProductImages = ({ images = [{ url: '' }] }) => {
   const [main, setMain] = useState(images[0]);
+
   return (
     <Wrapper>
       <ReactImageMagnify
