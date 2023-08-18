@@ -1,39 +1,26 @@
-// Sidebar imports
-import {
-  UilEstate,
-  UilClipboardAlt,
-  UilUsersAlt,
-  UilPackage,
-  UilChart,
-  UilSignOutAlt,
-} from '@iconscout/react-unicons';
-
-// Analytics Cards imports
-import { UilUsdSquare, UilMoneyWithdrawal } from '@iconscout/react-unicons';
-
 // Recent Card Imports
 import logo from '../assets/logo.png';
 
 // Sidebar Data
 export const SidebarData = [
   {
-    icon: UilEstate,
+    icon: logo,
     heading: 'Dashboard',
   },
   {
-    icon: UilClipboardAlt,
+    icon: logo,
     heading: 'Orders',
   },
   {
-    icon: UilUsersAlt,
+    icon: logo,
     heading: 'Customers',
   },
   {
-    icon: UilPackage,
+    icon: logo,
     heading: 'Products',
   },
   {
-    icon: UilChart,
+    icon: logo,
     heading: 'Analytics',
   },
 ];
@@ -43,12 +30,12 @@ export const cardsData = [
   {
     title: 'Sales',
     color: {
-      backGround: 'linear-gradient(180deg, #bb67ff 0%, #c484f3 100%)',
+      backGround: 'linear-gradient(rgb(99 152 237) 0%, rgb(165 192 250) 100%)',
       boxShadow: '0px 10px 20px 0px #e0c6f5',
     },
     barValue: 70,
     value: '25,970',
-    png: UilUsdSquare,
+    png: logo,
     series: [
       {
         name: 'Sales',
@@ -59,12 +46,12 @@ export const cardsData = [
   {
     title: 'Revenue',
     color: {
-      backGround: 'linear-gradient(180deg, #FF919D 0%, #FC929D 100%)',
+      backGround: 'linear-gradient(rgb(235 238 72) 0%, rgb(234 241 175) 100%)',
       boxShadow: '0px 10px 20px 0px #FDC0C7',
     },
     barValue: 80,
     value: '14,270',
-    png: UilMoneyWithdrawal,
+    png: logo,
     series: [
       {
         name: 'Revenue',
@@ -81,7 +68,7 @@ export const cardsData = [
     },
     barValue: 60,
     value: '4,270',
-    png: UilClipboardAlt,
+    png: logo,
     series: [
       {
         name: 'Expenses',

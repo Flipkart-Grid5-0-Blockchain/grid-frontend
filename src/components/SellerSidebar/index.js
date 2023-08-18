@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Wrapper from './styles';
 import Logo from '../../assets/logo.png';
-import { UilSignOutAlt } from '@iconscout/react-unicons';
 import { SidebarData } from '../../Data/Data';
-import { UilBars } from '@iconscout/react-unicons';
 import { motion } from 'framer-motion';
+import logo from '../../assets/logo.png';
 
 const SellerSidebar = () => {
   const [selected, setSelected] = useState(0);
@@ -27,7 +26,7 @@ const SellerSidebar = () => {
         style={expanded ? { left: '60%' } : { left: '5%' }}
         onClick={() => setExpaned(!expanded)}
       >
-        <UilBars />
+        {logo}
       </div>
       <motion.div
         className='sidebar'
@@ -56,9 +55,7 @@ const SellerSidebar = () => {
             );
           })}
           {/* signoutIcon */}
-          <div className='menuItem'>
-            <UilSignOutAlt />
-          </div>
+          <div className='menuItem'>{logo}</div>
         </div>
       </motion.div>
     </Wrapper>

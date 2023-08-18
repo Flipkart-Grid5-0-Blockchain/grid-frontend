@@ -2,12 +2,48 @@ import React, { useState } from 'react';
 import Wrapper from './styles';
 import 'react-circular-progressbar/dist/styles.css';
 import { motion, AnimateSharedLayout } from 'framer-motion';
-import { TextField } from '@material-ui/core';
 import { Button } from '@material-ui/core';
+import styled from 'styled-components';
 
 // parent Card
 
-const Card = (props) => {
+const BootstrapButton = styled(Button)({
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: 16,
+  padding: '6px 12px',
+  border: '1px solid',
+  lineHeight: 1.5,
+  backgroundColor: '#0063cc',
+  borderColor: '#0063cc',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    backgroundColor: '#0069d9',
+    borderColor: '#0062cc',
+    boxShadow: 'none',
+  },
+  '&:active': {
+    boxShadow: 'none',
+    backgroundColor: '#0062cc',
+    borderColor: '#005cbf',
+  },
+  '&:focus': {
+    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+  },
+});
+
+const GiftCard = (props) => {
   const [expanded, setExpanded] = useState(false);
   return (
     <Wrapper>
@@ -38,10 +74,9 @@ function CompactCard({ param, setExpanded }) {
         {param.type == 0 ? (
           <span>${param.value}</span>
         ) : (
-          <span>
-            <input placeholder='Address'></input>
-            <button>Send</button>
-          </span>
+          <BootstrapButton variant='contained' disableRipple>
+            Send
+          </BootstrapButton>
         )}
       </div>
     </div>
@@ -65,4 +100,4 @@ function ExpandedCard({ param, setExpanded }) {
   );
 }
 
-export default Card;
+export default GiftCard;

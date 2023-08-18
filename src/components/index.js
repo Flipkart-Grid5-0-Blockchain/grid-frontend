@@ -33,6 +33,7 @@ import MainDash from './MainDash';
 import RightSide from './RightSide';
 import BasicTable from './Table';
 import Updates from './Updates';
+import GiftCard from './GiftCard';
 export {
   FeaturedProducts,
   Card,
@@ -69,4 +70,5 @@ export {
   UserReview,
   ErrorBoundary,
   SellerSidebar,
+  GiftCard,
 };

@@ -45,7 +45,7 @@ const Wrapper = styled.div`
 
   /* sideDetail*/
   .detail {
-    flex: 1;
+    flex: 2;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -53,11 +53,9 @@ const Wrapper = styled.div`
   }
 
   .detail > span:nth-child(1) {
+    margin-bottom: 0.5rem;
     font-size: 22px;
     font-weight: bold;
-  }
-  .detail > span:nth-child(2) {
-    font-size: 20px;
   }
 
   /* ExpandedCard */
