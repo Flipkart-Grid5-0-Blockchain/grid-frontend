@@ -24,7 +24,6 @@ import {
   CustomerDashBoard,
 } from './pages';
 
-
 function App() {
   const { isSidebarOpen } = useProductsContext();
   const overflowPropertyToHideScroll =
@@ -60,7 +59,7 @@ function App() {
   }
 
   async function connectSupabase() {
-    console.log(SUPABASE_URL, SUPASBASE_ANON_KEY)
+    console.log(SUPABASE_URL, SUPASBASE_ANON_KEY);
     const supabase = await createClient(SUPABASE_URL, SUPASBASE_ANON_KEY);
 
     console.log('DAS', supabase);

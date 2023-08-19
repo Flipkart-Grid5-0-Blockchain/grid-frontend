@@ -32,7 +32,10 @@ function CompactCard({ param, setExpanded }) {
           <span>${param.value}</span>
         ) : (
           <span>
-            <input placeholder='Address'></input>
+            <input
+              onChange={(e) => console.log(e.target.value)}
+              placeholder='Address'
+            ></input>
             <button>Send</button>
           </span>
         )}

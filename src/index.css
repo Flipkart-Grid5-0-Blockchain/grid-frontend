@@ -12,11 +12,11 @@ Variables
 :root {
   /* dark shades of primary color*/
   --clr-primary-1: white;
-  --clr-primary-2: hsl(22, 28%, 29%);
-  --clr-primary-3: hsl(22, 28%, 37%);
-  --clr-primary-4: hsl(22, 28%, 45%);
+  --clr-primary-2: #054dc0;
+  --clr-primary-3: #2874f0;
+  --clr-primary-4: #5a92ec;
   /* primary/main color */
-  --clr-primary-5: hsl(22, 31%, 52%);
+  --clr-primary-5: #98baef;
   /* lighter shades of primary color */
   --clr-primary-6: #054dc0;
   --clr-primary-7:  #2874f0;
