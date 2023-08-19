@@ -6,9 +6,13 @@ const Wrapper = styled.div`
     flex: 1;
     border-radius: 0.7rem;
     color: white;
-    padding: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
     position: relative;
     cursor: pointer;
+    background: var(--clr-primary-8);
   }
   .CompactCard:hover {
     box-shadow: none !important;
@@ -54,7 +58,7 @@ const Wrapper = styled.div`
 
   .detail > span:nth-child(1) {
     font-size: 22px;
-    font-weight: bold;
+    font-weight: 600;
   }
   .detail > span:nth-child(2) {
     font-size: 20px;

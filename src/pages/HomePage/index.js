@@ -4,12 +4,13 @@ import { createClient } from '@supabase/supabase-js';
 // import { supabase } from '../../utils/supabaseClient';
 import { FeaturedProducts, Hero, Services, Contact } from '../../components';
 import { useUserContext } from '../../context/user_context';
-import {connect} from "../../utils/constants";
+import { connect } from '../../utils/constants';
 
 const HomePage = () => {
   const [provider, setProvider] = useState(null);
   const [address, setAddress] = useState(null);
   const { currentUser } = useUserContext();
+  console.log(currentUser);
   const supabase = createClient(
     'https://xjpwqafgdolpfjbfwtxt.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
@@ -101,7 +102,8 @@ const HomePage = () => {
       const { _data, error } = await supabase
         .from('tokensdata') // Replace with your table name
         .update({ transactions: updatedTransactions })
-        .eq('email', "ww@gmail.com").select();
+        .eq('email', 'ww@gmail.com')
+        .select();
 
       if (error) {
         console.error('Error updating data:', error);

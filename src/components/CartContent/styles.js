@@ -5,6 +5,18 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: space-between;
     margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+  .css-1izfg5m {
+    background-color: #fff;
+    width: 80%;
+    margin-left: 10%;
+  }
+  .css-19kzrtu {
+    padding: 24px;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+    border-left: 1px solid;
   }
   .link-btn {
     background: transparent;
@@ -21,8 +33,8 @@ const Wrapper = styled.section`
   .clear-btn {
     background: var(--clr-black);
   }
-  .highlight{
-    border-bottom:4px solid blue;
+  .highlight {
+    border-bottom: 4px solid blue;
   }
 `;
 

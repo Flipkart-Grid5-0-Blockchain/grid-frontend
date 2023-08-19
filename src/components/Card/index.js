@@ -60,14 +60,7 @@ function CompactCard({ param, setExpanded }) {
     // const tx = await Governance.connect(_signer).reward(param.value, param.address);
   }
   return (
-    <div
-      className='CompactCard'
-      style={{
-        background: param.color.backGround,
-        boxShadow: param.color.boxShadow,
-      }}
-      layoutId='expandableCard'
-    >
+    <div className='CompactCard' layoutId='expandableCard'>
       <div className='detail'>
         <span>{param.title}</span>
         {param.type === 0 ? (

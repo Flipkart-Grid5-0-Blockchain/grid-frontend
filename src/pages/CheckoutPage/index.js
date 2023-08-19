@@ -36,7 +36,6 @@ const CheckoutPage = () => {
 
   return (
     <main>
-      <PageHero title='checkout' />
       {editingShipping ? (
         <ShippingForm confirmShipping={confirmShipping} />
       ) : (
