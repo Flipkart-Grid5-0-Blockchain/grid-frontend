@@ -6,8 +6,9 @@ import { TextField } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { ethers } from 'ethers';
 import { createClient } from '@supabase/supabase-js';
-import ContractABI from '../../utils/Blockchain Constants/abi.json';
-import ContractAddresses from '../../utils/Blockchain Constants/address.json';
+import ContractABI from '../../utils/Contract-Constants/abi.json';
+import ContractAddresses from '../../utils/Contract-Constants/address.json';
+import RewardABI from '../../utils/Contract-Constants/rewardAbi.json';
 
 const supabase = createClient(
   'https://xjpwqafgdolpfjbfwtxt.supabase.co',
@@ -40,24 +41,37 @@ function CompactCard({ param, setExpanded }) {
   async function handleRewardCall() {
     const _provider = await new ethers.BrowserProvider(window.ethereum);
     const _signer = await _provider.getSigner();
-    // console.log(_signer[0].address);
-    const contractAddress = ContractAddresses['31337'];
-    // console.log(contractAddress);
 
-    console.log(address, value);
+    console.log(address, value,ContractAddresses['31337']['Governance']);
+    const governanceAddress = ContractAddresses['31337']['Governance'];
 
     const Governance = await new ethers.Contract(
-      contractAddress,
+      governanceAddress,
       ContractABI,
       _provider
     );
-    const tx = await Governance.connect(_signer).reward(value, address);
+
+    const rewardAddress = ContractAddresses['31337']['RewardToken'];
+    const RewardToken = await new ethers.Contract(
+      rewardAddress,
+      RewardABI,
+      _provider
+    );
+
+    console.log(address, value,ContractAddresses['31337']['Governance']);
+    const tx = await RewardToken.connect(_signer).approve(
+      ContractAddresses['31337']['Governance'],
+      100
+    );
     await tx.wait();
+    const tx1 = await Governance.connect(_signer).rewardUser(
+      address.toString(),
+      value
+    );
+    await tx1.wait();
 
-
-    console.log(Governance);
-
-    // const tx = await Governance.connect(_signer).reward(param.value, param.address);
+    //Left to update supabase
+    console.log('Transaction completed');
   }
   return (
     <div className='CompactCard' layoutId='expandableCard'>

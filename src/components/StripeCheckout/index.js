@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Wrapper from './styles';
 import { ethers } from 'ethers';
-import ContractABI from '../../utils/Blockchain Constants/abi.json';
-import ContractAddresses from '../../utils/Blockchain Constants/address.json';
+import ContractABI from '../../utils/Contract-Constants/abi.json';
+import ContractAddresses from '../../utils/Contract-Constants/address.json';
 // import { loadStripe } from '@stripe/stripe-js';
 import {
   CardElement,
@@ -21,6 +21,7 @@ import { payment_url as url } from '../../utils/constants';
 import { DataGrid } from '@material-ui/data-grid';
 import { createClient } from '@supabase/supabase-js';
 import { useProductsContext } from '../../context/products_context';
+
 const supabase = createClient(
   'https://xjpwqafgdolpfjbfwtxt.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
@@ -92,18 +93,20 @@ const CheckoutForm = () => {
   const addTokens = async () => {
     const _provider = await new ethers.BrowserProvider(window.ethereum);
     const _signer = await _provider.getSigner();
-    // console.log(_signer[0].address);
-    const contractAddress = ContractAddresses['31337'];
-    // console.log(contractAddress);
+
+    const contractAddress = ContractAddresses['31337']['Governance'];
 
     const Governance = await new ethers.Contract(
       contractAddress,
       ContractABI,
       _provider
     );
+
     console.log(Governance);
+
     try {
-      const tx1 = await Governance.connect(_signer).registerUser("sam");
+      /*This has to be put in the login page */
+      const tx1 = await Governance.connect(_signer).registerUser('sam');
       await tx1.wait();
       const tx = await Governance.connect(_signer).purchaseItem(
         1000000,
@@ -111,8 +114,6 @@ const CheckoutForm = () => {
       );
       await tx.wait();
       console.log(tx);
-      // const data  = await Governance.connect(_signer).addressToUser(_signer.address);
-      // console.log(data);
     } catch (error) {
       if (error.data) {
         const decodedError = Governance.interface.parseError(error.data);
@@ -176,7 +177,7 @@ const CheckoutForm = () => {
 
     let { data, error } = await supabase.rpc('add_tokens_data', {
       _email: currentUser.email,
-      _address: '0x07',
+      _address: '0x0788', // change in supabase that only email has to be removed
       _transaction: {
         timestamp: new Date(),
         expiry: new Date(new Date().setMonth(new Date().getMonth() + 2)),
