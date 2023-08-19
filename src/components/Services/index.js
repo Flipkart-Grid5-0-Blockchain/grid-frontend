@@ -24,8 +24,8 @@ const Services = () => {
             return (
               <article key={id} className='service'>
                 <span className='icon'>{icon}</span>
-                <h4>{title}</h4>
-                <p>{text}</p>
+                <h4 className='card-title'>{title}</h4>
+                <p className='card-content'>{text}</p>
               </article>
             );
           })}

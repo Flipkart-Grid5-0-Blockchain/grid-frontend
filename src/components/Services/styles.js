@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Wrapper = styled.section`
   h3,
   h4 {
-    color: var(--clr-primary-1);
+    color: black;
   }
   padding: 5rem 0;
 
@@ -30,6 +30,12 @@ const Wrapper = styled.section`
     p {
       color: var(--clr-primary-2);
     }
+  }
+  .card-title {
+    color: var(--clr-primary-10);
+  }
+  .card-content {
+    color: var(--clr-primary-10) !important;
   }
   span {
     width: 4rem;
