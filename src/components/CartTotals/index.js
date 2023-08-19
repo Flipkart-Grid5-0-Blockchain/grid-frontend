@@ -5,9 +5,9 @@ import { useUserContext } from '../../context/user_context';
 import { formatPrice } from '../../utils/helpers';
 import { Link } from 'react-router-dom';
 
-const CartTotals = () => {
+const CartTotals = ({ total_amount, shipping_fee }) => {
   const { currentUser } = useUserContext();
-  const { total_amount, shipping_fee } = useCartContext();
+  // const { total_amount, shipping_fee } = useCartContext();
 
   return (
     <Wrapper>

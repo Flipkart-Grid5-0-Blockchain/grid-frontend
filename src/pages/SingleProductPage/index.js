@@ -39,7 +39,7 @@ const SingleProductPage = () => {
     }
     // eslint-disable-next-line
   }, [error]);
-
+console.log(product)
   const {
     name,
     price,
@@ -48,7 +48,6 @@ const SingleProductPage = () => {
     rating: stars,
     numberOfReviews,
     reviews = [],
-    _id: sku,
     company,
     images,
   } = product;
@@ -84,7 +83,7 @@ const SingleProductPage = () => {
             </p>
             <p className='info'>
               <span>SKU : </span>
-              {sku}
+              {id}
             </p>
             <p className='info'>
               <span>Brand : </span>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Wrapper from './styles';
-import { loadStripe } from '@stripe/stripe-js';
+// import { loadStripe } from '@stripe/stripe-js';
 import {
   CardElement,
   useStripe,
@@ -15,14 +15,30 @@ import { formatPrice } from '../../utils/helpers';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { payment_url as url } from '../../utils/constants';
+import { DataGrid } from '@material-ui/data-grid';
+import { createClient } from '@supabase/supabase-js';
+import { useProductsContext } from '../../context/products_context';
+const supabase = createClient(
+  'https://xjpwqafgdolpfjbfwtxt.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
+);
 
-const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+// const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = () => {
-  const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
+  const {
+    cart,
+    total_amount,
+    total_after_redeem,
+    shipping_fee,
+    clearCart,
+    kart,
+    brand,
+  } = useCartContext();
   const { shipping, placeOrder } = useOrderContext();
   const { currentUser } = useUserContext();
   const history = useHistory();
+  const { products } = useProductsContext();
 
   // STRIPE STUFF
   const [succeeded, setSucceeded] = useState(false);
@@ -30,8 +46,9 @@ const CheckoutForm = () => {
   const [processing, setProcessing] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState('');
-  const stripe = useStripe();
-  const elements = useElements();
+  const [orderId,setOrderId] = useState(0);
+  // const stripe = useStripe();
+  // const elements = useElements();
 
   const cardStyle = {
     style: {
@@ -51,57 +68,92 @@ const CheckoutForm = () => {
     },
   };
 
-  // const createPaymentIntent = async () => {
-  //   try {
-  //     const { data } = await axios.post(url, {
-  //       cart,
-  //       shipping_fee,
-  //       total_amount,
-  //       shipping: {
-  //         name: shipping.name,
-  //         address: shipping.address,
-  //       },
-  //     });
-  //     setClientSecret(data.clientSecret);
-  //   } catch (error) {
-  //     toast.error('Some error occured while connecting to the payment gateway');
-  //   }
-  // };
+  const addOrders = async () => {
+    console.log('updating orders');
+    let { data, error } = await supabase
+      .from('orders')
+      .insert([
+        {
+          email: currentUser.email,
+          shippingdetails: shipping,
+          coinsawarded: 10,
+          brandid: 5,
+          brandAddress: 'asa',
+          order_amount:
+            total_after_redeem === 0 ? total_amount : total_after_redeem,
+          timestamp: new Date(),
+        },
+      ])
+      .select();
 
-  const handleChange = async (event) => {
-    setDisabled(event.empty);
-    setError(event.error ? event.error.message : '');
+    if (error) console.error(error);
+    // else console.log("mydata",data);
+    // console.log(data[0].order_id);
+    setOrderId(data[0].order_id);
+    return data[0].order_id;
   };
 
+  const addBrandsCoins = async (orderId) => {
+    console.log('updating brands');
+
+    for (const item of cart) {
+      console.log('id',orderId);
+      const { data } = await supabase.rpc('add_brands_data', {
+        _brandid: item.company_id,
+        _email: currentUser.email,
+        _transaction: {
+          order_id: orderId,
+          order_amount:
+            total_after_redeem === 0 ? total_amount : total_after_redeem,
+          order_timestamp: new Date(),
+        },
+        _reward: {},
+      });
+
+      if (error) {
+        console.error(error);
+      } else {
+        console.log('Thisssssss', data);
+      }
+    }
+  };
+
+  const addTxs = async () => {
+    console.log('updating transactions');
+
+    let { data, error } = await supabase.rpc('add_tokens_data', {
+      _email: currentUser.email,
+      _address: '0x07',
+      _transaction: {
+        timestamp: new Date(),
+        expiry: new Date(new Date().setMonth(new Date().getMonth() + 2)),
+        type: 0,
+        coins_awarded: 10,
+      },
+    });
+
+    if (error) console.error(error);
+    else console.log(data);
+  }
+
   const handleSubmit = async (ev) => {
+    console.log("user",currentUser)
     ev.preventDefault();
     setProcessing(true);
-
-    // const payload = await stripe.confirmCardPayment(clientSecret, {
-    //   payment_method: {
-    //     card: elements.getElement(CardElement),
-    //   },
-    // });
-
-    // if (payload.error) {
-    //   setError(`Payment failed: ${payload.error.message}`);
-    //   setProcessing(false);
-    // } else {
+    console.log(total_amount, total_after_redeem, brand, kart);
+    const __id = await addOrders();
+    await addBrandsCoins(__id);
+    await addTxs();
     setError(null);
     setProcessing(false);
     setSucceeded(true);
-    await placeOrder();
+    // await placeOrder();
     setTimeout(() => {
       clearCart();
-      history.push('/orders');
+      history.push('/');
     }, 5000);
     //   }
   };
-
-  // useEffect(() => {
-  // createPaymentIntent();
-  // eslint-disable-next-line
-  // }, []);
 
   return (
     <div>
@@ -125,14 +177,15 @@ const CheckoutForm = () => {
         </article>
       )}
       <form id='payment-form' onSubmit={handleSubmit}>
-        <CardElement
+        {/* <CardElement
           id='card-element'
           options={cardStyle}
           onChange={handleChange}
-        />
-        <button disabled={processing || disabled || succeeded} id='submit'>
+        /> */}
+        <button id='submit'>
           <span id='button-text'>
-            {processing ? <div className='spinner' id='spinner'></div> : 'Pay'}
+            {/* {processing ? <div className='spinner' id='spinner'></div> : 'Pay'} */}
+            Pay
           </span>
         </button>
         {/* show any errors that happens while processing the payment */}
@@ -157,9 +210,9 @@ const CheckoutForm = () => {
 const StripeCheckout = () => {
   return (
     <Wrapper>
-      <Elements stripe={promise}>
-        <CheckoutForm />
-      </Elements>
+      {/* <Elements stripe={promise}> */}
+      <CheckoutForm />
+      {/* </Elements> */}
     </Wrapper>
   );
 };

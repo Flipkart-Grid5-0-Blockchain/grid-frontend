@@ -4,11 +4,13 @@ import {
   COUNT_CART_TOTALS,
   REMOVE_CART_ITEM,
   TOGGLE_CART_ITEM_AMOUNT,
+  SET_VALUE,
 } from '../actions';
 
 const cart_reducer = (state, action) => {
   if (action.type === ADD_TO_CART) {
-    const { id, color, size, amount, product } = action.payload;
+    const { id, color, size, amount, company_id, company, product } =
+      action.payload;
     const tempItem = state.cart.find((item) => item.id === id + color + size);
     if (tempItem) {
       const tempCart = state.cart.map((cartItem) => {
@@ -30,6 +32,7 @@ const cart_reducer = (state, action) => {
         color,
         size,
         amount,
+         company_id, company,
         image: product.images[0].url,
         price: product.price,
         shipping: product.shipping,
@@ -91,7 +94,10 @@ const cart_reducer = (state, action) => {
     );
     return { ...state, total_items, total_amount, shipping_fee };
   }
-
+  if (action.type === SET_VALUE) {
+    const { key, value } = action.payload;
+    return { ...state, [key]: value };
+  }
   throw new Error(`No Matching "${action.type}" - action type`);
 };
 
