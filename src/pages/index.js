@@ -13,6 +13,7 @@ import OrdersPage from './OrdersPage/';
 import PrivateRoute from './PrivateRoute/';
 import ProfilePage from './ProfilePage/';
 import DashBoard from './DashBoard';
+import CustomerDashBoard from './CustomerDashboard';
 
 export {
   Home,
@@ -30,4 +31,5 @@ export {
   PrivateRoute,
   ProfilePage,
   DashBoard,
+  CustomerDashBoard,
 };

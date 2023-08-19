@@ -21,6 +21,7 @@ import {
   PrivateRoute,
   ProfilePage,
   DashBoard,
+  CustomerDashBoard,
 } from './pages';
 
 function App() {
@@ -98,6 +99,9 @@ function App() {
             </PrivateRoute>
             <PrivateRoute exact path='/dash'>
               <DashBoard />
+            </PrivateRoute>
+            <PrivateRoute exact path='/customer-dash'>
+              <CustomerDashBoard />
             </PrivateRoute>
             <PrivateRoute exact path='/register'>
               <Register />

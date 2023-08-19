@@ -25,6 +25,12 @@ const DashBoard = () => {
     fetchOrders();
   }, []);
 
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const ordersTableColumn = [
     { field: 'id', headerName: 'Order Id', minWidth: 300, flex: 1 },
 
@@ -95,7 +101,7 @@ const DashBoard = () => {
       field: 'amount',
       headerName: 'Amount',
       type: 'number',
-      minWidth: 270,
+      minWidth: 200,
       flex: 0.5,
     },
 
@@ -124,39 +130,43 @@ const DashBoard = () => {
     <Wrapper className='page-100'>
       <div>
         <div className='top_dash'>
-          <div className='dashboardSummaryBox2'>
-            <Link>
-              <p>Total Coins left</p>
-              <p>{2}</p>
-            </Link>
-          </div>
-          <div>
-            <div>--Send Coins</div>
-            <div>
-              <span>Address:</span>
-              <input type='text'></input>
-              <button>Send</button>
-            </div>
-          </div>
+          <Card
+            title='Total Coins left'
+            color={cardsData[0].color}
+            value={2}
+            type={0}
+          />
+
+          <Card
+            title='Send Coins'
+            color={cardsData[0].color}
+            value={2}
+            type={1}
+          />
         </div>
-        <div className='tables_seller'>
-          <div className='headings'>
-            <p
-              className={order ? 'heading_table bottom' : 'heading_table'}
-              onClick={() => setOrder(!order)}
-            >
-              Order History
-            </p>
-            <p
-              className={!order ? 'heading_table bottom' : 'heading_table'}
-              onClick={() => setOrder(!order)}
-            >
-              User Transactions
-            </p>
+        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
+          <Tabs value={value} onChange={handleChange} centered>
+            <Tab label='Order History' onClick={() => setOrder(!order)} />
+            <Tab label='User Transactions' onClick={() => setOrder(!order)} />
+          </Tabs>
+        </Box>
+        {order ? (
+          <div className='productListContainer'>
+            <h1 id='productListHeading'>ALL ORDERS</h1>
+
+            <DataGrid
+              rows={rowsOrder}
+              columns={ordersTableColumn}
+              pageSize={10}
+              disableSelectionOnClick
+              className='productListTable'
+              autoHeight
+            />
           </div>
-          {order ? (
+        ) : (
+          <div>
             <div className='productListContainer'>
-              <h1 id='productListHeading'>ALL ORDERS</h1>
+              <h1 id='productListHeading'>TRANSACTIONS HISTORY</h1>
 
               <DataGrid
                 rows={ordersRow}
@@ -167,23 +177,8 @@ const DashBoard = () => {
                 autoHeight
               />
             </div>
-          ) : (
-            <div>
-              <div className='productListContainer'>
-                <h1 id='productListHeading'>Transactions History</h1>
-
-                <DataGrid
-                  rows={transOrder}
-                  columns={transTableColumn}
-                  pageSize={10}
-                  disableSelectionOnClick
-                  className='productListTable'
-                  autoHeight
-                />
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </Wrapper>
   );

@@ -7,8 +7,32 @@ const Wrapper = styled.main`
     align-items: center;
     width: 70%;
     margin: 0 auto;
+    margin-bottom: 10rem;
+  }
+
+  .left-cards {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .mid-heading {
+    text-align: center;
+    align-items: center;
+    font: 300 2rem 'Roboto';
+    margin-bottom: 3rem;
+  }
+
+  .mid-dash {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3rem;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
     margin-bottom: 8rem;
   }
+
   .dashboardSummaryBox2 > a {
     color: white;
     font: 300 1.7rem 'Roboto';
@@ -74,14 +98,15 @@ const Wrapper = styled.main`
   }
 
   .productListContainer {
-    width: 80%;
+    padding-left: 7.5%;
+    width: 90%;
     box-sizing: border-box;
     background-color: rgb(255, 255, 255);
     border-left: 1px solid rgba(0, 0, 0, 0.158);
     display: flex;
     flex-direction: column;
     height: 100vh;
-    margin: 0 auto;
+    justify-content: center;
   }
 
   #productListHeading {
