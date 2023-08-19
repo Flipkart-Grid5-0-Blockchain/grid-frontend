@@ -11,7 +11,7 @@ const Wrapper = styled.section`
   }
   @media only screen and (max-width: 400px) {
     article {
-      padding: 1.5rem .5rem;
+      padding: 1.5rem 0.5rem;
     }
   }
   h4,
@@ -27,7 +27,7 @@ const Wrapper = styled.section`
     margin-top: 2rem;
   }
   @media (min-width: 776px) {
-    justify-content: flex-end;
+    justify-content: center;
   }
   .btn {
     width: 100%;

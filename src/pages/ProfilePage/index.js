@@ -106,7 +106,6 @@ function ProfilePage() {
 
   return (
     <Wrapper>
-      <PageHero title='profile' />
       <div className='profile-img'>
         <img src={image} alt='profile' />
         <label className='btn' htmlFor='profile'>

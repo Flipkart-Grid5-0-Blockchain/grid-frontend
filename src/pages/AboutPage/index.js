@@ -10,23 +10,20 @@ const AboutPage = () => {
 
   return (
     <main>
-      <PageHero title='about' />
       <Wrapper className='page section section-center'>
         <img src={aboutImg} alt='pic' />
         <article>
           <div className='title'>
-            <h2>My Story</h2>
+            <h2>Our Story</h2>
             <div className='underline'></div>
           </div>
           <p>
-            Smartkart was started by Varun Tiwar in December'21, with an aim to
-            build a strong infrastructure for small bussiness owners to expand
-            their reach, by bringing their products online. Today Smartkart is
-            used by hundreds of shop owners to expand their bussiness. This is
-            possible just due to your trust, support and our constant efforts to
-            make the platform even better. We are working tirelessly to improve
-            the experience of our end users and hope to soon reach 1000+
-            customers.
+            SmartCart is an innovative e-commerce platform built on Web3
+            technology, offering users a seamless and secure shopping
+            experience. By integrating blockchain and decentralized features,
+            SmartCart ensures transparent transactions, data privacy, and
+            efficient inventory management, revolutionizing the way online
+            shopping is conducted while prioritizing user trust and convenience.
           </p>
         </article>
       </Wrapper>

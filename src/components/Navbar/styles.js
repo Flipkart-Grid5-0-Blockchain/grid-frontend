@@ -39,7 +39,8 @@ const NavContainer = styled.nav`
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
-    margin-right: 4rem;
+    margin-left: 4rem;
+    margin-right: 12rem;
   }
   .cart-btn-wrapper {
     display: none;
@@ -66,7 +67,16 @@ const NavContainer = styled.nav`
         letter-spacing: var(--spacing);
         padding: 0.5rem;
         &:hover {
-          border-bottom: 2px solid var(--clr-primary-7);
+          ${'' /* border-bottom: 2px solid var(--clr-primary-7); */}
+        }
+        .nav-content {
+          padding: 0.15rem 0.25rem;
+          font-size: 1.25rem;
+          &:hover {
+            background-color: var(--clr-primary-8);
+            border-radius: 5px;
+            transition: background 100ms ease-in-out;
+          }
         }
       }
     }
