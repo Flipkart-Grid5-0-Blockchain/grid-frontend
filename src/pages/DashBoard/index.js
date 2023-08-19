@@ -2,11 +2,17 @@ import React, { useEffect, useState } from 'react';
 import Wrapper from './styles';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
-import { createClient } from '@supabase/supabase-js';
-const supabase = createClient(
-  'https://xjpwqafgdolpfjbfwtxt.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
-);
+// import { createClient } from '@supabase/supabase-js';
+import Card from '../../components/Card';
+import { cardsData } from '../../Data/Data';
+import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import {supabase} from "../../utils/supabaseClient";
+// const supabase = createClient(
+//   'https://xjpwqafgdolpfjbfwtxt.supabase.co',
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
+// );
 
 
 //Dashboard
@@ -80,14 +86,30 @@ const DashBoard = () => {
     });
   console.log("ordersTb",ordersRow);
 
+  const transOrder = [];
+  // orders &&
+  //   orders.forEach((item) => {
+  //     rowsOrder.push({
+  //       id: item._id,
+  //       itemsQty: item.orderItems.length,
+  //       amount: item.totalPrice,
+  //       status: item.orderStatus,
+  //     });
+  //   });
+
   const transTableColumn = [
-    { field: 'id', headerName: 'Order ID', minWidth: 300, flex: 1 },
+    { field: 'id', headerName: 'Order ID', minWidth: 200, flex: 0.5 },
 
     {
       field: 'status',
       headerName: 'Status',
       minWidth: 150,
       flex: 0.5,
+      // cellClassName: (params) => {
+      //   return params.getValue(params.id, 'status') === 'Delivered'
+      //     ? 'greenColor'
+      //     : 'redColor';
+      // },
     },
     {
       field: 'itemsQty',
@@ -115,7 +137,7 @@ const DashBoard = () => {
     },
   ];
 
-  const transOrder = [];
+  const rowsOrder = [];
   // orders &&
   //   orders.forEach((item) => {
   //     rowsOrder.push({
@@ -169,8 +191,8 @@ const DashBoard = () => {
               <h1 id='productListHeading'>TRANSACTIONS HISTORY</h1>
 
               <DataGrid
-                rows={ordersRow}
-                columns={ordersTableColumn}
+                rows={transOrder}
+                columns={transTableColumn}
                 pageSize={10}
                 disableSelectionOnClick
                 className='productListTable'
