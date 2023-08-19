@@ -3,12 +3,13 @@ import Wrapper from './styles';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
 import Card from '../../components/Card';
+import { GiftCard } from '../../components';
 import { cardsData } from '../../Data/Data';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 //Dashboard
-const DashBoard = () => {
+const CustomerDashBoard = () => {
   const [order, setOrder] = useState(true);
   useEffect(() => {
     document.title = 'Smartkart | DashBoard';
@@ -126,12 +127,28 @@ const DashBoard = () => {
     <Wrapper className='page-100'>
       <div>
         <div className='top_dash'>
-          <Card
-            title='Total Coins left'
-            color={cardsData[0].color}
-            value={2}
-            type={0}
-          />
+          <div className='left-cards'>
+            <Card
+              title='Total Coins left'
+              color={cardsData[0].color}
+              value={2}
+              type={0}
+            />
+
+            <Card
+              title='Total Coins left'
+              color={cardsData[0].color}
+              value={2}
+              type={0}
+            />
+
+            <Card
+              title='Total Coins left'
+              color={cardsData[0].color}
+              value={2}
+              type={0}
+            />
+          </div>
 
           <Card
             title='Send Coins'
@@ -140,44 +157,72 @@ const DashBoard = () => {
             type={1}
           />
         </div>
-        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-          <Tabs value={value} onChange={handleChange} centered>
-            <Tab label='Order History' onClick={() => setOrder(!order)} />
-            <Tab label='User Transactions' onClick={() => setOrder(!order)} />
-          </Tabs>
-        </Box>
-        {order ? (
-          <div className='productListContainer'>
-            <h1 id='productListHeading'>ALL ORDERS</h1>
 
-            <DataGrid
-              rows={rowsOrder}
-              columns={ordersTableColumn}
-              pageSize={10}
-              disableSelectionOnClick
-              className='productListTable'
-              autoHeight
-            />
-          </div>
-        ) : (
-          <div>
-            <div className='productListContainer'>
-              <h1 id='productListHeading'>TRANSACTIONS HISTORY</h1>
+        <div className='mid-heading'>GIFT COUPONS</div>
+        <div className='mid-dash'>
+          <GiftCard
+            title='Total Coins left'
+            color={cardsData[1].color}
+            value={2}
+            type={1}
+          />
 
-              <DataGrid
-                rows={transOrder}
-                columns={transTableColumn}
-                pageSize={10}
-                disableSelectionOnClick
-                className='productListTable'
-                autoHeight
-              />
-            </div>
-          </div>
-        )}
+          <GiftCard
+            title='Total Coins left'
+            color={cardsData[1].color}
+            value={2}
+            type={1}
+          />
+
+          <GiftCard
+            title='Total Coins left'
+            color={cardsData[1].color}
+            value={2}
+            type={1}
+          />
+
+          <GiftCard
+            title='Total Coins left'
+            color={cardsData[1].color}
+            value={2}
+            type={1}
+          />
+
+          <GiftCard
+            title='Total Coins left'
+            color={cardsData[1].color}
+            value={2}
+            type={1}
+          />
+          <GiftCard
+            title='Total Coins left'
+            color={cardsData[1].color}
+            value={2}
+            type={1}
+          />
+          <GiftCard
+            title='Total Coins left'
+            color={cardsData[1].color}
+            value={2}
+            type={1}
+          />
+        </div>
+
+        <div className='productListContainer'>
+          <h1 id='productListHeading'>ALL ORDERS</h1>
+
+          <DataGrid
+            rows={rowsOrder}
+            columns={ordersTableColumn}
+            pageSize={10}
+            disableSelectionOnClick
+            className='productListTable'
+            autoHeight
+          />
+        </div>
       </div>
     </Wrapper>
   );
 };
 
-export default DashBoard;
+export default CustomerDashBoard;
