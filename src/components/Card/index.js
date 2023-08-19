@@ -25,17 +25,10 @@ const Card = (props) => {
 // Compact Card
 function CompactCard({ param, setExpanded }) {
   return (
-    <div
-      className='CompactCard'
-      style={{
-        background: param.color.backGround,
-        boxShadow: param.color.boxShadow,
-      }}
-      layoutId='expandableCard'
-    >
+    <div className='CompactCard' layoutId='expandableCard'>
       <div className='detail'>
         <span>{param.title}</span>
-        {param.type == 0 ? (
+        {param.type === 0 ? (
           <span>${param.value}</span>
         ) : (
           <span>
