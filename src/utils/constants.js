@@ -120,3 +120,13 @@ export const payment_url = `${domain}/api/payment/create-payment-intent`;
 export const upload_url = `${domain}/api/upload/`;
 export const default_profile_image =
   'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg';
+
+
+ export async function connect() {
+    if (typeof window.ethereum !== 'undefined') {
+      window.ethereum.request({ method: 'eth_requestAccounts', params: [] });
+      console.log('Connected');
+    } else {
+      alert('Please install metamask');
+    }
+  }
