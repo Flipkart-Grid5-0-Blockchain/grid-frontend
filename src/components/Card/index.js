@@ -80,20 +80,24 @@ function CompactCard({ param, setExpanded }) {
         {param.type === 0 ? (
           <span>${param.value}</span>
         ) : (
-          <span>
+          <span className='input-container'>
             <input
+              className='input'
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               placeholder='Address'
             ></input>
             <input
+              className='input'
               value={value}
               onChange={(e) => {
                 setValue(e.target.value);
               }}
               placeholder='coins'
             ></input>
-            <button onClick={() => handleRewardCall()}>Send</button>
+            <button className='btn' onClick={() => handleRewardCall()}>
+              Send
+            </button>
           </span>
         )}
       </div>

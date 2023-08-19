@@ -77,7 +77,6 @@ const Wrapper = styled.main`
     width: 80%;
     box-sizing: border-box;
     background-color: rgb(255, 255, 255);
-    border-left: 1px solid rgba(0, 0, 0, 0.158);
     display: flex;
     flex-direction: column;
     height: 100vh;

@@ -18,6 +18,18 @@ const Wrapper = styled.div`
     box-shadow: none !important;
   }
 
+  .input {
+    width: 50%;
+    padding: 0.5rem;
+    background: var(--clr-grey-10);
+    border-radius: var(--radius);
+    border-color: transparent;
+    letter-spacing: var(--spacing);
+  }
+  .input::placeholder {
+    text-transform: capitalize;
+  }
+
   /* radial bar */
   .radialBar {
     flex: 1 1;
