@@ -28,23 +28,32 @@ const Nav = () => {
             const { url, text, id } = link;
             return (
               <li key={id}>
-                <Link to={url}>{text}</Link>
+                <Link to={url}>
+                  {' '}
+                  <div className='nav-content'>{text}</div>{' '}
+                </Link>
               </li>
             );
           })}
           {currentUser && (
             <li>
-              <Link to='/checkout'>checkout</Link>
+              <Link to='/checkout'>
+                <div className='nav-content'>checkout</div>
+              </Link>
             </li>
           )}
           {currentUser && (
             <li>
-              <Link to='/orders'>orders</Link>
+              <Link to='/orders'>
+                <div className='nav-content'>orders</div>
+              </Link>
             </li>
           )}
           {currentUser && (
             <li>
-              <Link to='/dash'>DashBoard</Link>
+              <Link to='/dash'>
+                <div className='nav-content'>DashBoard</div>
+              </Link>
             </li>
           )}
         </ul>

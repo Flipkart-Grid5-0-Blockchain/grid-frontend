@@ -5,7 +5,7 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  background: var(--clr-primary-7);
   .nav-center {
     width: 90vw;
     margin: 0 auto;
@@ -20,6 +20,12 @@ const NavContainer = styled.nav`
       margin-left: -15px;
     }
   }
+  .nav-content {
+    color: var(--clr-primary-1);
+    font: Roboto;
+    font-weight: 400;
+    font-size: 24px;
+  }
   .nav-toggle {
     background: transparent;
     border: transparent;
@@ -30,7 +36,10 @@ const NavContainer = styled.nav`
     }
   }
   .nav-links {
-    display: none;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    margin-right: 4rem;
   }
   .cart-btn-wrapper {
     display: none;
