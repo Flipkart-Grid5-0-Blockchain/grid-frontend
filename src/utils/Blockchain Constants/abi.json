@@ -12,6 +12,11 @@
   },
   {
     "inputs": [],
+    "name": "ADDRESS_IS_NOT_REGISTERED",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "AMOUNT_MUST_BE_GREATER_THAN_ZERO",
     "type": "error"
   },
@@ -38,6 +43,11 @@
   {
     "inputs": [],
     "name": "REFFERED_USER_ITSELF",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "USER_IS_NOT_REGISTERED",
     "type": "error"
   },
   {
@@ -178,16 +188,179 @@
     "type": "event"
   },
   {
+    "stateMutability": "payable",
+    "type": "fallback"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "addressToBrand",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "totalCoinsPool",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "addressToUser",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "availableCoins",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "purchaseCoins",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "refferalCoins",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "reviewCoins",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "reedemedCoins",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_amount",
+        "name": "_brandCoins",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address[]",
+        "name": "_brands",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "_brandAmount",
+        "type": "uint256[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_platformCoins",
         "type": "uint256"
       }
     ],
     "name": "expireTokens",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "brand",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getBrandRewardData",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct Governance.UserRewardData[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getTokenAddress",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "brand",
+        "type": "address"
+      }
+    ],
+    "name": "getUserBrandCoins",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maxCoinsPossible",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -222,6 +395,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "purchaseRewardRate",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -253,6 +439,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "refferalCoinsRewarded",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "address",
@@ -261,6 +460,26 @@
       }
     ],
     "name": "refferalUser",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "registerAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_email",
+        "type": "string"
+      }
+    ],
+    "name": "registerUser",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -320,5 +539,48 @@
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_updatedReward",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateMaxCoins",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_updatedRate",
+        "type": "uint256"
+      }
+    ],
+    "name": "updatePurchaseReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_updatedReward",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateRefferalReward",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive"
   }
 ]

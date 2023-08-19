@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Wrapper from './styles';
+import { ethers } from 'ethers';
+import ContractABI from '../../utils/Blockchain Constants/abi.json';
+import ContractAddresses from '../../utils/Blockchain Constants/address.json';
 // import { loadStripe } from '@stripe/stripe-js';
 import {
   CardElement,
@@ -46,9 +49,15 @@ const CheckoutForm = () => {
   const [processing, setProcessing] = useState('');
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState('');
-  const [orderId,setOrderId] = useState(0);
+  const [orderId, setOrderId] = useState(0);
+  const [provider, setProvider] = useState(null);
   // const stripe = useStripe();
   // const elements = useElements();
+
+  // useEffect(() => {
+  //   console.log(ContractABI);
+  //   console.log(ContractAddresses)
+  // },[])
 
   const cardStyle = {
     style: {
@@ -68,6 +77,50 @@ const CheckoutForm = () => {
     },
   };
 
+  async function getProviderAndSigner() {
+    try {
+      const _provider = await new ethers.BrowserProvider(window.ethereum);
+      const _signer = await _provider.getSigner();
+      setProvider(_provider);
+      console.log(_signer.address);
+      console.log(_provider, _signer.address);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const addTokens = async () => {
+    const _provider = await new ethers.BrowserProvider(window.ethereum);
+    const _signer = await _provider.getSigner();
+    // console.log(_signer[0].address);
+    const contractAddress = ContractAddresses['31337'];
+    // console.log(contractAddress);
+
+    const Governance = await new ethers.Contract(
+      contractAddress,
+      ContractABI,
+      _provider
+    );
+    console.log(Governance);
+    try {
+      const tx1 = await Governance.connect(_signer).registerUser("sam");
+      await tx1.wait();
+      const tx = await Governance.connect(_signer).purchaseItem(
+        1000000,
+        '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65'
+      );
+      await tx.wait();
+      console.log(tx);
+      // const data  = await Governance.connect(_signer).addressToUser(_signer.address);
+      // console.log(data);
+    } catch (error) {
+      if (error.data) {
+        const decodedError = Governance.interface.parseError(error.data);
+        console.log(`Transaction failed: ${decodedError?.name}`);
+      }
+      console.error(error);
+    }
+  };
   const addOrders = async () => {
     console.log('updating orders');
     let { data, error } = await supabase
@@ -97,7 +150,7 @@ const CheckoutForm = () => {
     console.log('updating brands');
 
     for (const item of cart) {
-      console.log('id',orderId);
+      console.log('id', orderId);
       const { data } = await supabase.rpc('add_brands_data', {
         _brandid: item.company_id,
         _email: currentUser.email,
@@ -134,14 +187,15 @@ const CheckoutForm = () => {
 
     if (error) console.error(error);
     else console.log(data);
-  }
+  };
 
   const handleSubmit = async (ev) => {
-    console.log("user",currentUser)
+    console.log('user', currentUser);
     ev.preventDefault();
     setProcessing(true);
     console.log(total_amount, total_after_redeem, brand, kart);
     const __id = await addOrders();
+    await addTokens();
     await addBrandsCoins(__id);
     await addTxs();
     setError(null);

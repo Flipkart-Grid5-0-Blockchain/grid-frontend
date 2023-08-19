@@ -98,10 +98,10 @@ export const OrderProvider = ({ children }) => {
     dispatch({ type: UPDATE_SHIPPING_DETAILS, payload: { name, value } });
   };
 
-  useEffect(() => {
-    fetchOrders(get_order_url);
-    // eslint-disable-next-line
-  }, [currentUser, cart]);
+  // useEffect(() => {
+  //   fetchOrders(get_order_url);
+  //   // eslint-disable-next-line
+  // }, [currentUser, cart]);
 
   return (
     <OrderContext.Provider value={{ ...state, updateShipping, placeOrder }}>
