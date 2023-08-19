@@ -54,7 +54,6 @@ function CompactCard({ param, setExpanded }) {
     const tx = await Governance.connect(_signer).reward(value, address);
     await tx.wait();
 
-
     console.log(Governance);
 
     // const tx = await Governance.connect(_signer).reward(param.value, param.address);
@@ -66,20 +65,24 @@ function CompactCard({ param, setExpanded }) {
         {param.type === 0 ? (
           <span>${param.value}</span>
         ) : (
-          <span>
+          <span className='input-container'>
             <input
+              className='input'
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               placeholder='Address'
             ></input>
             <input
+              className='input'
               value={value}
               onChange={(e) => {
                 setValue(e.target.value);
               }}
               placeholder='coins'
             ></input>
-            <button onClick={() => handleRewardCall()}>Send</button>
+            <button className='btn' onClick={() => handleRewardCall()}>
+              Send
+            </button>
           </span>
         )}
       </div>
