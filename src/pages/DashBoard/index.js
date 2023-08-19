@@ -8,12 +8,15 @@ import { cardsData } from '../../Data/Data';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { ethers } from 'ethers';
+import ContractABI from '../../utils/Contract-Constants/abi.json';
+import ContractAddresses from '../../utils/Contract-Constants/address.json';
+import RewardABI from '../../utils/Contract-Constants/rewardAbi.json';
 // import {supabase} from "../../utils/supabaseClient";
 const supabase = createClient(
   'https://xjpwqafgdolpfjbfwtxt.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
 );
-
 
 //Dashboard
 const DashBoard = () => {
@@ -26,11 +29,31 @@ const DashBoard = () => {
     console.log(data);
     setOrdersData(data);
   };
+  const fetchOrderTansactionData = async () => {
+    const _provider = await new ethers.BrowserProvider(window.ethereum);
+    const _signer = await _provider.getSigner();
+    const governanceAddress = ContractAddresses['31337']['Governance'];
+
+    const Governance = await new ethers.Contract(
+      governanceAddress,
+      ContractABI,
+      _provider
+    );
+
+    const data = await Governance.connect(_signer).addressToBrand(
+      '0x90F79bf6EB2c4f870365E785982E1f101E93b906'
+    );
+    console.log('data', data);
+  };
   useEffect(() => {
     document.title = 'Smartkart | DashBoard';
     fetchOrders();
   }, []);
 
+  useEffect(() => {
+    fetchOrderTansactionData();
+    console.log("Called");
+  });
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -75,7 +98,7 @@ const DashBoard = () => {
   const ordersRow = [];
   ordersData &&
     ordersData.forEach((item) => {
-      console.log(item)
+      console.log(item);
       ordersRow.push({
         id: item.order_id,
         email: item.email,
@@ -84,7 +107,7 @@ const DashBoard = () => {
         coinsAwarded: item.coinsawarded,
       });
     });
-  console.log("ordersTb",ordersRow);
+  console.log('ordersTb', ordersRow);
 
   const transOrder = [];
   // orders &&
