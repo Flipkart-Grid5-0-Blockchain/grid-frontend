@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import Wrapper from './styles';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
-// import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
 import Card from '../../components/Card';
 import { cardsData } from '../../Data/Data';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import {supabase} from "../../utils/supabaseClient";
-// const supabase = createClient(
-//   'https://xjpwqafgdolpfjbfwtxt.supabase.co',
-//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
-// );
+// import {supabase} from "../../utils/supabaseClient";
+const supabase = createClient(
+  'https://xjpwqafgdolpfjbfwtxt.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
+);
 
 
 //Dashboard
