@@ -21,6 +21,9 @@ const Wrapper = styled.section`
   .clear-btn {
     background: var(--clr-black);
   }
+  .highlight{
+    border-bottom:4px solid blue;
+  }
 `;
 
 export default Wrapper;

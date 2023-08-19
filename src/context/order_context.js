@@ -65,6 +65,8 @@ export const OrderProvider = ({ children }) => {
         image: item.image,
         color: item.color,
         size: item.size,
+        org_id: item.id,
+        brand_id: item.brand_id,
         product: item.id.replace(item.color + item.size, ''),
       };
     });
@@ -82,12 +84,12 @@ export const OrderProvider = ({ children }) => {
       shippingPrice: shipping_fee,
       totalPrice: total_amount + shipping_fee,
     };
-    try {
-      await axios.post(create_order_url, body);
+    // try {
+    //   await axios.post(create_order_url, body);
       toast.success('Order placed');
-    } catch (error) {
-      toast.error(error.message);
-    }
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   }
   };
 
   const updateShipping = (e) => {
