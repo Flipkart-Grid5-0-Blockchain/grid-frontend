@@ -24,6 +24,7 @@ import {
   CustomerDashBoard,
 } from './pages';
 
+
 function App() {
   const { isSidebarOpen } = useProductsContext();
   const overflowPropertyToHideScroll =

@@ -138,7 +138,6 @@ const CheckoutForm = () => {
 
   const handleSubmit = async (ev) => {
     console.log("user",currentUser)
-    console.log("addressValue",currentUser.hello)
     ev.preventDefault();
     setProcessing(true);
     console.log(total_amount, total_after_redeem, brand, kart);
