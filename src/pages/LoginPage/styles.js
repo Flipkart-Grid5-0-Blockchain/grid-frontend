@@ -6,6 +6,31 @@ const Wrapper = styled.section`
   div {
     min-width: 300px;
   }
+  .role-picker {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+  }
+  .role-text {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .btn-new {
+    text-transform: uppercase;
+    background: var(--clr-primary-7);
+    color: white;
+    padding: 0.85rem 0.85rem;
+    letter-spacing: var(--spacing);
+    display: inline-block;
+    font-weight: 400;
+    transition: var(--transition);
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius);
+    border-color: transparent;
+    width: 60%;
+  }
   .title {
     display: flex;
     flex-direction: column;
@@ -47,13 +72,14 @@ const Wrapper = styled.section`
       margin: 0.5rem;
     }
     .links {
-      width: 100%;
+      width: 60%;
       display: flex;
       justify-content: space-between;
     }
     .link {
-      font-size: smaller;
-      color: var(--clr-primary-1);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--clr-primary-6);
       text-transform: capitalize;
     }
     .seperator {
@@ -74,11 +100,11 @@ const Wrapper = styled.section`
     }
     .login-btn {
       margin-top: 1.25rem;
-      width: 100%;
+      width: 60%;
     }
     .google-btn {
       margin-top: 1.25rem;
-      width: 100%;
+      width: 60%;
       color: var(--clr-primary-5);
       background: transparent;
       border: 2px solid var(--clr-primary-5);

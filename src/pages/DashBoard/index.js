@@ -183,7 +183,7 @@ const DashBoard = () => {
         <div className='top_dash'>
           <Card
             title='Total Coins left'
-            color={cardsData[0].color}
+            color={'var(--clr-primary-3)'}
             value={2}
             type={0}
           />
