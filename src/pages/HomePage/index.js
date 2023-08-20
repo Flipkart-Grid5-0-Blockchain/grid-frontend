@@ -12,12 +12,15 @@ import RewardABI from '../../utils/Contract-Constants/rewardAbi.json';
 const HomePage = () => {
   const [provider, setProvider] = useState(null);
   const [address, setAddress] = useState(null);
-  const { currentUser } = useUserContext();
-  console.log(currentUser);
+  const { currentUser,userType , userAddress} = useUserContext();
+  console.log("Consoling on here",currentUser);
   const supabase = createClient(
     'https://xjpwqafgdolpfjbfwtxt.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
   );
+ console.log(currentUser);
+ console.log("i m user", userType);
+ console.log("my address", userAddress)
 
   const dataArray = [
     {
@@ -120,39 +123,39 @@ const HomePage = () => {
         .update({ transactions: updatedTransactions })
         .eq('email', 'ww@gmail.com')
         .select();
-
-      //Update the thing parallely on databse as well as blockchain
-      const _provider = await new ethers.BrowserProvider(window.ethereum);
-      const _signer = await _provider.getSigner();
-      console.log(provider, _signer.address);
-
-      const contractAddress = ContractAddresses['31337']['Governance'];
-
-      const Governance = await new ethers.Contract(
-        contractAddress,
-        ContractABI,
-        _provider
-      );
-      console.log(Governance);
-
-      try {
-        const tx = await Governance.connect(_signer).expireTokens(
-          brandCoins,
-          brandAddressesArray,
-          deductionAmountsArray,
-          availableCoins
-        );
-        await tx.wait();
-
-        console.log('Transaction successful:', tx);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-
       if (error) {
         console.error('Error updating data:', error);
       } else {
         console.log('Data updated successfully:', _data);
+      }
+      //Update the thing parallely on databse as well as blockchain
+      if (brandCoins > 0) {
+        const _provider = await new ethers.BrowserProvider(window.ethereum);
+        const _signer = await _provider.getSigner();
+        console.log(provider, _signer.address);
+
+        const contractAddress = ContractAddresses['31337']['Governance'];
+
+        const Governance = await new ethers.Contract(
+          contractAddress,
+          ContractABI,
+          _provider
+        );
+        console.log(Governance);
+
+        try {
+          const tx = await Governance.connect(_signer).expireTokens(
+            brandCoins,
+            brandAddressesArray,
+            deductionAmountsArray,
+            availableCoins
+          );
+          await tx.wait();
+
+          console.log('Transaction successful:', tx);
+        } catch (error) {
+          console.error('Error:', error);
+        }
       }
     } catch (err) {
       console.log(err);

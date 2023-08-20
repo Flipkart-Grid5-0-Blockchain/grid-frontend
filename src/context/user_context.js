@@ -21,8 +21,26 @@ const UserContext = React.createContext();
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [userType, setUserType] = useState(0)
+  const [userAddress, setUserAddress] = useState("");
+  const handleType = (usertype) => {
+    console.log("i am called",usertype)
+    // if (!currentUser) return;
+    // console.log("getting the user");
+    // setCurrentUser({ ...currentUser, usertype });
+    setUserType(usertype)
+  };
+  const handleAddress = (_address) =>{
+    console.log("calling to update address");
+    setUserAddress(_address);
+  }
 
-  const registerUser = (email, password) => {
+  const handleChangeUserAddress = (address) => {
+    if (!address || !currentUser) return;
+    setCurrentUser({ ...currentUser, address });
+  };
+
+  const registerUser = async (email, password, userType) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
@@ -86,8 +104,11 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) setCurrentUser(null);
-      setCurrentUser(user);
+      if (!user) {
+        setCurrentUser(null);
+      } else {
+        setCurrentUser(user);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -108,7 +129,12 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         currentUser,
+        userType,
+        userAddress,
         registerUser,
+        handleType,
+        handleAddress,
+        handleChangeUserAddress,
         loginUser,
         logoutUser,
         signInWithGoogle,

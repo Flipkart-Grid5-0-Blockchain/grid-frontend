@@ -8,11 +8,13 @@ const Wrapper = styled.main`
     width: 70%;
     margin: 0 auto;
     margin-bottom: 10rem;
+    gap: 3rem;
   }
 
   .left-cards {
-    display: flex;
-    gap: 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 
   .mid-heading {
@@ -24,7 +26,7 @@ const Wrapper = styled.main`
 
   .mid-dash {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
     justify-content: space-between;
     align-items: center;

@@ -1,25 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import Wrapper from './styles';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import { useUserContext } from '../../context/user_context';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import useMounted from '../../hooks/useMounted';
 import { toast } from 'react-toastify';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import Button from '../../components/Button';
+import { ethers } from 'ethers';
+import ContractABI from '../../utils/Contract-Constants/abi.json';
+import ContractAddresses from '../../utils/Contract-Constants/address.json';
 
 function LoginPage() {
   const history = useHistory();
   const location = useLocation();
   const mounted = useMounted();
-  const { loginUser, signInWithGoogle } = useUserContext();
+  const { loginUser, signInWithGoogle, handleType, handleChangeAddress } =
+    useUserContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isToggled, setToggle] = useState(0);
 
-  const handleSubmit = (e) => {
+  async function connectAddress() {
+    if (typeof window.ethereum !== 'undefined') {
+      window.ethereum.request({ method: 'eth_requestAccounts', params: [] });
+      console.log('Connected');
+      const _provider = await new ethers.BrowserProvider(window.ethereum);
+      const _signer = await _provider.getSigner();
+      handleChangeAddress(_signer.address)
+    } else {
+      alert('Please install metamask');
+    }
+
+  }
+  async function registerUserMetamask() {
+    const _provider = await new ethers.BrowserProvider(window.ethereum);
+    const _signer = await _provider.getSigner();
+
+    const contractAddress = ContractAddresses['31337']['Governance'];
+
+
+    const Governance = await new ethers.Contract(
+      contractAddress,
+      ContractABI,
+      _provider
+    );
+
+    console.log(Governance);
+    if (isToggled) {
+      handleType(1);
+    } else {
+      handleType(0);
+    }
+  }
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!email) {
       return toast.error('Please enter e-mail');
     }
@@ -27,10 +68,11 @@ function LoginPage() {
     if (!password) {
       return toast.error('Please enter password');
     }
-
     setIsSubmitting(true);
     loginUser(email, password)
       .then((res) => {
+        connectAddress();
+        handleType(isToggled);
         history.push(location.state?.from ?? '/');
       })
       .catch((err) => {
@@ -42,6 +84,10 @@ function LoginPage() {
   function togglePasswordVisibility() {
     setVisible(!visible);
   }
+
+  const handleToggle = () => {
+    setToggle(!isToggled);
+  };
 
   useEffect(() => {
     document.title = 'Smartkart | Login';
@@ -94,7 +140,7 @@ function LoginPage() {
           {/* end links */}
           <Button
             type='submit'
-            className='btn login-btn'
+            className='btn-new login-btn'
             disabled={isSubmitting}
           >
             login
@@ -105,12 +151,16 @@ function LoginPage() {
           </div>
           <button
             type='button'
-            className='btn google-btn'
+            className='btn-new google-btn'
             disabled={isSubmitting}
             onClick={() => {
               signInWithGoogle()
                 .then((user) => {
-                  history.push('/');
+                  registerUserMetamask().then(() => {
+                    connectAddress();
+                  handleType(isToggled)
+                    history.push('/');
+                  });
                 })
                 .catch((err) => {
                   toast.error(`Error: ${err.message}`);
@@ -120,6 +170,39 @@ function LoginPage() {
             sign in with google
           </button>
         </form>
+
+        <div className='role-picker'>
+          <FormControl>
+            <FormLabel id='demo-row-radio-buttons-group-label'>
+              <div className='role-text'>Select a Role</div>{' '}
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby='demo-row-radio-buttons-group-label'
+              name='row-radio-buttons-group'
+            >
+              <FormControlLabel
+                value='brand'
+                control={<Radio />}
+                label='Brand'
+                onClick={handleToggle}
+              />
+              <FormControlLabel
+                value='customer'
+                control={<Radio />}
+                label='Customer'
+                onClick={handleToggle}
+              />
+            </RadioGroup>
+          </FormControl>
+          <button className='btn' onClick={handleToggle}>
+            {isToggled ? 'Login as Customer' : 'Login as Brand'}
+          </button>
+          {/* <p>
+            Toggle is{' '}
+            {isToggled ? 'Logged in as Customer' : 'Logged in as Brand '}.
+          </p> */}
+        </div>
       </div>
     </Wrapper>
   );

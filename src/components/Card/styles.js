@@ -12,7 +12,7 @@ const Wrapper = styled.div`
     padding-left: 3rem;
     position: relative;
     cursor: pointer;
-    background: var(--clr-primary-8);
+    background: var(--clr-primary-3);
   }
   .CompactCard:hover {
     box-shadow: none !important;
