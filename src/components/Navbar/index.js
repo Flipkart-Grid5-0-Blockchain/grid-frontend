@@ -42,11 +42,17 @@ const Nav = () => {
               </Link>
             </li>
           )}
-
+          {currentUser && (
+            <li>
+              <Link to='/user-dash'>
+                <div className='nav-content'>user</div>
+              </Link>
+            </li>
+          )}
           {currentUser && (
             <li>
               <Link to='/dash'>
-                <div className='nav-content'>DashBoard</div>
+                <div className='nav-content'>Seller</div>
               </Link>
             </li>
           )}

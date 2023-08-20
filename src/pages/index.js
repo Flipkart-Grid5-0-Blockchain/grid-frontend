@@ -1,5 +1,5 @@
 import Home from './HomePage/';
-import About from './AboutPage/';
+import Tokenomics from './TokenomicsPage';
 import Products from './ProductsPage/';
 import Cart from './CartPage/';
 import SingleProduct from './SingleProductPage/';
@@ -17,7 +17,6 @@ import CustomerDashBoard from './CustomerDashboard';
 
 export {
   Home,
-  About,
   Products,
   Cart,
   SingleProduct,
@@ -32,4 +31,5 @@ export {
   ProfilePage,
   DashBoard,
   CustomerDashBoard,
+  Tokenomics,
 };

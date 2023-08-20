@@ -13,6 +13,7 @@ import { ethers } from 'ethers';
 import ContractABI from '../../utils/Contract-Constants/abi.json';
 import ContractAddresses from '../../utils/Contract-Constants/address.json';
 import RewardABI from '../../utils/Contract-Constants/rewardAbi.json';
+import { useUserContext } from '../../context/user_context';
 // import {supabase} from "../../utils/supabaseClient";
 const supabase = createClient(
   'https://xjpwqafgdolpfjbfwtxt.supabase.co',
@@ -23,26 +24,33 @@ const supabase = createClient(
 const DashBoard = () => {
   const [order, setOrder] = useState(true);
   const [ordersData, setOrdersData] = useState([]);
-  const [signerAddress, setSignerAddress] = useState('');
+  const [brandsData, setBrandsData] = useState([]);
+  //  const { currentUser, userType, userAddress } = useUserContext();
+  // const [signerAddress, setSignerAddress] = useState('');
 
-  useEffect(() => {
-      const signerAdd = async() => {
-      const _provider = await new ethers.BrowserProvider(window.ethereum);
-      const _signer = await _provider.getSigner();
+  // useEffect(() => {
+  //     const signerAdd = async() => {
+  //     const _provider = await new ethers.BrowserProvider(window.ethereum);
+  //     const _signer = await _provider.getSigner();
       
-      console.log('signer', _signer);
-      setSignerAddress(_signer._address);
-    }
-    signerAdd();
-    }, [order]);
+  //     console.log('signer', _signer);
+  //     setSignerAddress(_signer._address);
+  //   }
+  //   signerAdd();
+  //   }, [order]);
 
-
+async function getAddress(){
+  const _provider = await new ethers.BrowserProvider(window.ethereum);
+  const _signer =  await _provider.getSigner();
+  const address = await _signer.address;
+  return address;
+}
   const fetchOrders = async () => {
-    console.log("signers", signerAddress);
     console.log('fetching orders');
-    const { data } = await supabase.from('orders').select();
-    console.log(data);
-
+    let { data } = await supabase.from('orders').select();
+    const userAddress = await getAddress();
+    console.log('userAddress', userAddress);
+    data = data.filter((item) => item.brandAddress === userAddress);
     setOrdersData(data);
   };
 
@@ -56,15 +64,30 @@ const DashBoard = () => {
       ContractABI,
       _provider
     );
-
+      const userAddress = await getAddress();
     const data = await Governance.connect(_signer).addressToBrand(
-      '0x90F79bf6EB2c4f870365E785982E1f101E93b906'
+      userAddress
     );
     console.log('data', data);
   };
+
+  const fetchTxs = async () => {
+    console.log('fetching txs');
+    let { data: brands, error } = await supabase
+      .from('brands')
+      .select();
+
+      
+    const userAddress = await getAddress();
+    brands = brands.filter((item) => item.brandaddress === userAddress);
+      // console.log('............fetched data.............', brands);
+      // console.log('............fetched data.............', userAddress);
+    setBrandsData(brands);
+  }
   useEffect(() => {
     document.title = 'Smartkart | DashBoard';
     fetchOrders();
+    fetchTxs();
   }, []);
 
   useEffect(() => {
@@ -76,6 +99,7 @@ const DashBoard = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
 
   const ordersTableColumn = [
     { field: 'id', headerName: 'Order Id', minWidth: 300, flex: 1 },
@@ -115,7 +139,6 @@ const DashBoard = () => {
   const ordersRow = [];
   ordersData &&
     ordersData.forEach((item) => {
-      console.log(item);
       ordersRow.push({
         id: item.order_id,
         email: item.email,
@@ -124,53 +147,60 @@ const DashBoard = () => {
         coinsAwarded: item.coinsawarded,
       });
     });
-  console.log('ordersTb', ordersRow);
 
   const transOrder = [];
-  // orders &&
-  //   orders.forEach((item) => {
-  //     rowsOrder.push({
-  //       id: item._id,
-  //       itemsQty: item.orderItems.length,
-  //       amount: item.totalPrice,
-  //       status: item.orderStatus,
-  //     });
-  //   });
+  brandsData &&
+  brandsData.forEach((item) => {
+      let awards = 0;
+     item.rewards && 
+        item.rewards.forEach((val) => {
+          // console.log('valhdaskjdhsjkaDHlkHADLKHSALKDJhASLKJDhSAJKhdjnA>S<KJdhASLKJ', val);
+          if (Object.keys(val).length !== 0)
+            awards += val.rewards?.amount;
+        })
+
+      transOrder.push({
+        id: item.transactions[0].order_id,
+        userAddress: item.useraddress,
+        totalTransactions: item.transactions.length,
+        totalRewardedCoins: awards !== 0 ? awards : 0,
+        lastRewarddate: awards !== 0 ? item.rewards[item.rewards.length - 1] : "",
+      });
+    });
+  // console.log('tx order data', brandsData);
+  // console.log("tx order data", transOrder)
 
   const transTableColumn = [
-    { field: 'id', headerName: 'Order ID', minWidth: 200, flex: 0.5 },
-
     {
-      field: 'status',
-      headerName: 'Status',
-      minWidth: 150,
-      flex: 0.5,
-      // cellClassName: (params) => {
-      //   return params.getValue(params.id, 'status') === 'Delivered'
-      //     ? 'greenColor'
-      //     : 'redColor';
-      // },
+      field: 'id',
+      headerName: 'User Id',
+      minWidth: 300,
+      flex: 1,
     },
     {
-      field: 'itemsQty',
-      headerName: 'Items Qty',
-      type: 'number',
-      minWidth: 150,
-      flex: 0.4,
-    },
-
-    {
-      field: 'amount',
-      headerName: 'Amount',
+      field: 'userAddress',
+      headerName: 'User Address',
       type: 'number',
       minWidth: 200,
       flex: 0.5,
     },
-
     {
-      field: 'actions',
+      field: 'totalTransactions',
+      headerName: 'Total Transactions',
+      minWidth: 150,
+      flex: 0.5,
+    },
+    {
+      field: 'totalRewardedCoins',
+      headerName: 'Total Rewarded Coins',
+      type: 'number',
+      minWidth: 150,
+      flex: 0.4,
+    },
+    {
+      field: 'lastRewarddate',
       flex: 0.3,
-      headerName: 'Actions',
+      headerName: 'Last Reward Date',
       minWidth: 150,
       type: 'number',
       sortable: false,

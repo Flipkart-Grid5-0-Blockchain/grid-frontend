@@ -15,8 +15,8 @@ export const links = [
   },
   {
     id: 2,
-    text: 'about',
-    url: '/about',
+    text: 'Tokenomics',
+    url: '/tokenomics',
   },
   {
     id: 3,

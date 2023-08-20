@@ -7,7 +7,7 @@ import { createClient } from '@supabase/supabase-js';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   Home,
-  About,
+  Tokenomics,
   Products,
   Cart,
   SingleProduct,
@@ -61,10 +61,10 @@ function App() {
   }
 
   async function connectSupabase() {
-    console.log(SUPABASE_URL, SUPASBASE_ANON_KEY);
+    // console.log(SUPABASE_URL, SUPASBASE_ANON_KEY);
     const supabase = await createClient(SUPABASE_URL, SUPASBASE_ANON_KEY);
 
-    console.log('DAS', supabase);
+    // console.log('DAS', supabase);
     const { data } = await supabase.from('brands').select();
     console.log(data);
     console.log('connected');
@@ -87,8 +87,8 @@ function App() {
             <Route exact path='/'>
               <Home />
             </Route>
-            <Route exact path='/about'>
-              <About />
+            <Route exact path='/tokenomics'>
+              <Tokenomics />
             </Route>
             <Route exact path='/products'>
               <Products />
@@ -102,7 +102,7 @@ function App() {
             <PrivateRoute exact path='/dash'>
               <DashBoard />
             </PrivateRoute>
-            <PrivateRoute exact path='/customer-dash'>
+            <PrivateRoute exact path='/user-dash'>
               <CustomerDashBoard />
             </PrivateRoute>
             <PrivateRoute exact path='/register'>

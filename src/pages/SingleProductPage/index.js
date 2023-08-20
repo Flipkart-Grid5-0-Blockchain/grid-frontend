@@ -39,7 +39,7 @@ const SingleProductPage = () => {
     }
     // eslint-disable-next-line
   }, [error]);
-console.log(product)
+// console.log(product)
   const {
     name,
     price,

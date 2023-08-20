@@ -4,11 +4,15 @@ import 'react-circular-progressbar/dist/styles.css';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import { Button } from '@material-ui/core';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 // parent Card
 
 const GiftCard = (props) => {
   const [expanded, setExpanded] = useState(false);
+  const history = useHistory();
+
   return (
     <Wrapper>
       <AnimateSharedLayout>
@@ -30,9 +34,11 @@ function CompactCard({ param, setExpanded }) {
         <div className='text-field'>{param.company}</div>
         <div className='btn-container'>
           <div className='text-field'>{param.title}: </div>
-          <div className='text-field'>${param.value}</div>
+          <div className='text-field'>{param.value}</div>
         </div>
-        <div className='btn'>Redeem</div>
+        <div className='btn'>
+          <Link to='/products'>Redeem</Link>
+        </div>
       </div>
     </div>
   );
