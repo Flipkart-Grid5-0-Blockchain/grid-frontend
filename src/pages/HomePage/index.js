@@ -12,13 +12,16 @@ import RewardABI from '../../utils/Contract-Constants/rewardAbi.json';
 const HomePage = () => {
   const [provider, setProvider] = useState(null);
   const [address, setAddress] = useState(null);
-  const { currentUser } = useUserContext();
-  console.log(currentUser);
+  const { currentUser,userType , userAddress} = useUserContext();
+  console.log("Consoling on here",currentUser);
   const supabase = createClient(
     'https://xjpwqafgdolpfjbfwtxt.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
   );
  console.log(currentUser);
+ console.log("i m user", userType);
+ console.log("my address", userAddress)
+
   const dataArray = [
     {
       type: 1,

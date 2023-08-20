@@ -19,18 +19,32 @@ function LoginPage() {
   const history = useHistory();
   const location = useLocation();
   const mounted = useMounted();
-  const { loginUser, signInWithGoogle } = useUserContext();
+  const { loginUser, signInWithGoogle, handleType, handleChangeAddress } =
+    useUserContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [visible, setVisible] = useState(false);
   const [isToggled, setToggle] = useState(0);
 
+  async function connectAddress() {
+    if (typeof window.ethereum !== 'undefined') {
+      window.ethereum.request({ method: 'eth_requestAccounts', params: [] });
+      console.log('Connected');
+      const _provider = await new ethers.BrowserProvider(window.ethereum);
+      const _signer = await _provider.getSigner();
+      handleChangeAddress(_signer.address)
+    } else {
+      alert('Please install metamask');
+    }
+
+  }
   async function registerUserMetamask() {
     const _provider = await new ethers.BrowserProvider(window.ethereum);
     const _signer = await _provider.getSigner();
 
     const contractAddress = ContractAddresses['31337']['Governance'];
+
 
     const Governance = await new ethers.Contract(
       contractAddress,
@@ -40,13 +54,9 @@ function LoginPage() {
 
     console.log(Governance);
     if (isToggled) {
-      const registerBrand = await Governance.connect(_signer).registerAddress();
-      await registerBrand.wait();
+      handleType(1);
     } else {
-      const registerCustomer = await Governance.connect(_signer).registerUser(
-        email
-      );
-      await registerCustomer.wait();
+      handleType(0);
     }
   }
   const handleSubmit = async (e) => {
@@ -58,10 +68,11 @@ function LoginPage() {
     if (!password) {
       return toast.error('Please enter password');
     }
-    registerUserMetamask();
     setIsSubmitting(true);
     loginUser(email, password)
       .then((res) => {
+        connectAddress();
+        handleType(isToggled);
         history.push(location.state?.from ?? '/');
       })
       .catch((err) => {
@@ -146,6 +157,8 @@ function LoginPage() {
               signInWithGoogle()
                 .then((user) => {
                   registerUserMetamask().then(() => {
+                    connectAddress();
+                  handleType(isToggled)
                     history.push('/');
                   });
                 })
