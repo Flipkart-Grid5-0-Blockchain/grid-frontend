@@ -34,6 +34,7 @@ import RightSide from './RightSide';
 import BasicTable from './Table';
 import Updates from './Updates';
 import GiftCard from './GiftCard';
+import CoinSend from './CoinSend';
 export {
   FeaturedProducts,
   Card,
@@ -71,4 +72,5 @@ export {
   ErrorBoundary,
   SellerSidebar,
   GiftCard,
+  CoinSend,
 };

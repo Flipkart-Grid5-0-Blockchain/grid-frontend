@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
 import { createClient } from '@supabase/supabase-js';
 import Card from '../../components/Card';
+import CoinSend from '../../components/CoinSend';
 import { cardsData } from '../../Data/Data';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
@@ -52,7 +53,7 @@ const DashBoard = () => {
 
   useEffect(() => {
     fetchOrderTansactionData();
-    console.log("Called");
+    console.log('Called');
   });
   const [value, setValue] = React.useState(0);
 
@@ -182,12 +183,7 @@ const DashBoard = () => {
             type={0}
           />
 
-          <Card
-            title='Send Coins'
-            color={cardsData[0].color}
-            value={2}
-            type={1}
-          />
+          <CoinSend />
         </div>
         <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
           <Tabs value={value} onChange={handleChange} centered>
