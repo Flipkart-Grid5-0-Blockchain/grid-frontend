@@ -153,7 +153,6 @@ This dashboard functionality is available to help the customers maintain their o
       <a href="https://www.linkedin.com/in/ayush-garg-4ba2b1206/">LinkedIn</a>
       <a href="https://github.com/Ayush-019">Github</a>
     </td>
-
     <td align="center">
       <img src="./assets/samar.jpeg" width="150px" alt="GSSoC'22" />
       <br/>
