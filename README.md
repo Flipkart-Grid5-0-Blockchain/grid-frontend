@@ -65,10 +65,10 @@ Following are some of the unique features and technologies implemented in Smartk
 - [x] <b>Community Engagement:</b> The token-powered ecosystem encourages active user participation, building a vibrant community of shoppers, vendors, and stakeholders.
 - [x] <b>Token Wallet:</b> Every user gets a secure digital wallet to store and manage their earned tokens, enabling easy tracking and redemption of rewards.
 
-We are also proposing an exclusive feature of <>Review Incentivization</> that is implemented for the first time in Smartkart:
+We are also proposing an exclusive feature of <b>Review Incentivization</b> that is implemented for the first time in Smartkart:
 
-- [ ] <b>Community Engagement:</b> Authenticity Algorithm: SmartKart employs a sophisticated algorithm that evaluates the genuineness of product reviews. Users are rewarded with tokens for leaving honest feedback, driving meaningful interactions.
-- [ ] <b>Token Wallet:</b> Trustworthy Feedback: With the blockchain verifying review authenticity, customers can rely on accurate feedback, making informed purchasing decisions.
+- [ ] <b> Authenticity Algorithm:</b> SmartKart employs a sophisticated algorithm that evaluates the genuineness of product reviews. Users are rewarded with tokens for leaving honest feedback, driving meaningful interactions.
+- [ ] <b>Trustworthy Feedback:</b> With the blockchain verifying review authenticity, customers can rely on accurate feedback, making informed purchasing decisions.
 
 #### Dashboards
 
@@ -150,11 +150,3 @@ This dashboard functionality is available to help the customers maintain their o
     </td>
   </tr>
 </table>
-
-## ⚖ License
-
-[MIT](./LICENSE.md)
-
-<br>
-<br>
-<br>
