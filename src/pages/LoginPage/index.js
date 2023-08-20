@@ -6,6 +6,9 @@ import useMounted from '../../hooks/useMounted';
 import { toast } from 'react-toastify';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import Button from '../../components/Button';
+import { ethers } from 'ethers';
+import ContractABI from '../../utils/Contract-Constants/abi.json';
+import ContractAddresses from '../../utils/Contract-Constants/address.json';
 
 function LoginPage() {
   const history = useHistory();
@@ -16,10 +19,33 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [isToggled, setToggle] = useState(0);
 
-  const handleSubmit = (e) => {
+  async function registerUserMetamask() {
+    const _provider = await new ethers.BrowserProvider(window.ethereum);
+    const _signer = await _provider.getSigner();
+
+    const contractAddress = ContractAddresses['31337']['Governance'];
+
+    const Governance = await new ethers.Contract(
+      contractAddress,
+      ContractABI,
+      _provider
+    );
+
+    console.log(Governance);
+    if (isToggled) {
+      const registerBrand = await Governance.connect(_signer).registerAddress();
+      await registerBrand.wait();
+    } else {
+      const registerCustomer = await Governance.connect(_signer).registerUser(
+        email
+      );
+      await registerCustomer.wait();
+    }
+  }
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!email) {
       return toast.error('Please enter e-mail');
     }
@@ -27,7 +53,7 @@ function LoginPage() {
     if (!password) {
       return toast.error('Please enter password');
     }
-
+    registerUserMetamask();
     setIsSubmitting(true);
     loginUser(email, password)
       .then((res) => {
@@ -42,6 +68,10 @@ function LoginPage() {
   function togglePasswordVisibility() {
     setVisible(!visible);
   }
+
+  const handleToggle = () => {
+    setToggle(!isToggled);
+  };
 
   useEffect(() => {
     document.title = 'Smartkart | Login';
@@ -110,7 +140,9 @@ function LoginPage() {
             onClick={() => {
               signInWithGoogle()
                 .then((user) => {
-                  history.push('/');
+                  registerUserMetamask().then(() => {
+                    history.push('/');
+                  });
                 })
                 .catch((err) => {
                   toast.error(`Error: ${err.message}`);
@@ -120,6 +152,16 @@ function LoginPage() {
             sign in with google
           </button>
         </form>
+
+        <div>
+          <button onClick={handleToggle}>
+            {isToggled ? 'Login as Customer' : 'Login as Brand'}
+          </button>
+          <p>
+            Toggle is{' '}
+            {isToggled ? 'Logged in as Customer' : 'Logged in as Brand '}.
+          </p>
+        </div>
       </div>
     </Wrapper>
   );
