@@ -1,6 +1,6 @@
 import React from 'react';
 import NavContainer from './styles';
-import new_logo from '../../assets/new_logo.jpeg';
+import new_logo from '../../assets/new_logo.png';
 import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { links } from '../../utils/constants';
