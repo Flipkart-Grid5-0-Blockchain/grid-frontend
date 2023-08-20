@@ -78,7 +78,7 @@ Smartkart provides it's users an easy to use dashboard interface.
 This is the dashboard which is available for the aid of sellers. Sellers can keep a track of teir dispatcked orders and transactions made with customers.
 
 <p align='center'>
-<img src='./assets/Smartkart-Dashboard.png'>
+<img src='./assets/Smartkart-DashBoard.png'>
 </p>
 
 **2. Customer Dashboard**
@@ -86,7 +86,7 @@ This is the dashboard which is available for the aid of sellers. Sellers can kee
 This dashboard functionality is available to help the customers maintain their order history and also to keep track of the tokens that they have received from different brands.
 
 <p align='center'>
-<img src='./assets/Smartkart-Dashboard.png'>
+<img src='./assets/Smartkart-DashBoard.png'>
 </p>
 
 ## ⚙ Tools and Technologies used
@@ -141,64 +141,22 @@ This dashboard functionality is available to help the customers maintain their o
    npm run build
    ```
 
-## 🤝 Test user credentials
-
-| **E-mail**          | **Password** |
-| ------------------- | ------------ |
-| bob@tomperwear.com  | bob1212      |
-| test@tomperwear.com | test1212     |
-
-## 🙌 Open souce programs
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://gssoc.girlscript.tech/">
-        <img src="./assets/GSSoC.png" alt="GSSoC'22">
-        <br/>
-        GirlScript Summer of Code 2022 (GSSoC'22)
-      </a>
-    </td>
-  </tr>
-</table>
-
-## 🙌 Other events
-
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://www.linkedin.com/posts/aasf-iiitmg_github-winterprojects-learning-activity-6909474506340282368-GYq5">
-        <img src="./assets/winter-projects.png" width="350px" alt="GSSoC'22">
-        <img src="./assets/best-web-app.jpg" width="350px" alt="GSSoC'22">
-        <br/>
-        Awarded as the <b>Best Web App</b> in <b>Winter Projects</b> organized by <b>GDSC</b> and <b>AASF</b>, IIITM, Gwalior
-      </a>
-    </td>
-  </tr>
-</table>
-
 ## 😎 Team Members
 
 <table>
   <tr>
     <td align="center">
-      <img src="https://avatars.githubusercontent.com/u/83509023?v=4" width="150px" alt="GSSoC'22" />
+      <img src="./assets/ishaan.jpeg" width="150px" alt="GSSoC'22" />
       <br/>
-      Varun Kumar Tiwari
+      Ishaan Sharma
       <br/>
-      2020IMT-112
+      2020IMT-040
       <br/>
-      <a href="https://www.linkedin.com/in/varun-tiwari-454591178/">LinkedIn</a>
-      <a href="https://github.com/varunKT001">Github</a>
+      <a href="https://www.linkedin.com/in/ishaan-sharma-195770202/">LinkedIn</a>
+      <a href="https://github.com/sharmaishaan21">Github</a>
     </td>
   </tr>
 </table>
-
-## 🙌 Thanks to all the contributors
-
-<a href="https://github.com/varunKT001/tomper-wear-ecommerce/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=varunKT001/tomper-wear-ecommerce" />
-</a>
 
 ## ⚖ License
 
@@ -207,7 +165,3 @@ This dashboard functionality is available to help the customers maintain their o
 <br>
 <br>
 <br>
-
-<p align='center'>
-(If you liked the project, give it star 😃)
-</p>
