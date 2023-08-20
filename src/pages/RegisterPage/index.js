@@ -6,6 +6,9 @@ import useMounted from '../../hooks/useMounted';
 import { toast } from 'react-toastify';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import Button from '../../components/Button';
+import { ethers } from 'ethers';
+import ContractABI from '../../utils/Contract-Constants/abi.json';
+import ContractAddresses from '../../utils/Contract-Constants/address.json';
 
 function RegisterPage() {
   const history = useHistory();
@@ -18,6 +21,35 @@ function RegisterPage() {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
   const [isVisibleConfirmPassword, setIsVisibleConfirmPassword] =
     useState(false);
+  const [isToggled, setToggle] = useState(0);
+
+  const handleToggle = () => {
+    setToggle(!isToggled);
+  };
+
+  async function registerUserMetamask() {
+    const _provider = await new ethers.BrowserProvider(window.ethereum);
+    const _signer = await _provider.getSigner();
+
+    const contractAddress = ContractAddresses['31337']['Governance'];
+
+    const Governance = await new ethers.Contract(
+      contractAddress,
+      ContractABI,
+      _provider
+    );
+
+    console.log(Governance);
+    if (isToggled) {
+      const registerBrand = await Governance.connect(_signer).registerAddress();
+      await registerBrand.wait();
+    } else {
+      const registerCustomer = await Governance.connect(_signer).registerUser(
+        email
+      );
+      await registerCustomer.wait();
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -138,7 +170,9 @@ function RegisterPage() {
             onClick={() => {
               signInWithGoogle()
                 .then((user) => {
-                  history.push('/');
+                  registerUserMetamask().then(() => {
+                    history.push('/');
+                  });
                 })
                 .catch((err) => {
                   toast.error(`Error: ${err.message}`);
@@ -148,6 +182,15 @@ function RegisterPage() {
             sign in with google
           </button>
         </form>
+        <div>
+          <button onClick={handleToggle}>
+            {isToggled ? 'Login as Customer' : 'Login as Brand'}
+          </button>
+          <p>
+            Toggle is{' '}
+            {isToggled ? 'Logged in as Customer' : 'Logged in as Brand '}.
+          </p>
+        </div>
       </div>
     </Wrapper>
   );

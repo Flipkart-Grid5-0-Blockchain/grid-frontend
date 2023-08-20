@@ -21,6 +21,7 @@ import { payment_url as url } from '../../utils/constants';
 import { DataGrid } from '@material-ui/data-grid';
 import { createClient } from '@supabase/supabase-js';
 import { useProductsContext } from '../../context/products_context';
+import RewardABI from '../../utils/Contract-Constants/rewardAbi.json';
 
 const supabase = createClient(
   'https://xjpwqafgdolpfjbfwtxt.supabase.co',
@@ -55,6 +56,7 @@ const CheckoutForm = () => {
   // const stripe = useStripe();
   // const elements = useElements();
 
+  
   // useEffect(() => {
   //   console.log(ContractABI);
   //   console.log(ContractAddresses)
@@ -83,8 +85,6 @@ const CheckoutForm = () => {
       const _provider = await new ethers.BrowserProvider(window.ethereum);
       const _signer = await _provider.getSigner();
       setProvider(_provider);
-      console.log(_signer.address);
-      console.log(_provider, _signer.address);
     } catch (err) {
       console.log(err);
     }
@@ -102,24 +102,103 @@ const CheckoutForm = () => {
       _provider
     );
 
-    console.log(Governance);
-
     try {
       /*This has to be put in the login page */
       const tx1 = await Governance.connect(_signer).registerUser('sam');
       await tx1.wait();
       console.log(kart);
 
-      const data = await Governance.connect(_signer).getUserTotalCoins(
-        _signer.address
-      );
-      console.log(parseInt(data));
+      const userCoinsAvailable = await Governance.connect(
+        _signer
+      ).getUserTotalCoins(_signer.address);
 
-      if (parseInt(data) > kart && kart != 0) {
-        const tx2 = await Governance.connect(_signer).redeemCoins(kart);
-        await tx2.wait();
-        //And we will traverse the supabase array and update the coins
+      const __brandAddress = '0x0777';
+
+      const userBrandCoins = await Governance.connect(
+        _signer
+      ).getUserBrandCoins(_signer.address, __brandAddress);
+
+      const email = currentUser?.email;
+
+      const { transactionArray } = await supabase
+        .from('tokensdata') // Replace with your table name
+        .select('transactions')
+        .eq('email', email);
+      console.log(transactionArray);
+
+      var updatedArray;
+      console.log("--------Getting into updatioonnnnnnnn--------")
+
+      if (kart != 0 && brand == 0) {
+        if (parseInt(userCoinsAvailable) >= kart) {
+          const tx = await Governance.connect(_signer).redeemCoins(kart);
+          await tx.wait();
+
+          // Make supabase calls over it
+          updatedArray = transactionArray.filter((data) => {
+            if (kart > 0) {
+              const { amount } = data;
+              if (amount <= kart) {
+                kart -= amount;
+                return false;
+              } else {
+                data.amount -= kart;
+                kart = 0;
+              }
+            }
+            return true;
+          });
+
+          const { _data, error } = await supabase
+            .from('tokensdata') // Replace with your table name
+            .update({ transactions: updatedArray })
+            .eq('email', email)
+            .select();
+          if (error) {
+            console.error('Error updating data:', error);
+          } else {
+            console.log('Data updated successfully:', _data);
+          }
+        } else {
+          return toast.error('You do not have enough coins to redeem');
+        }
       }
+
+
+      /***********Updationnnnnn of branddddddd reward datatataatat-------- */
+      if (kart == 0 && brand != 0) {
+        if (parseInt(userBrandCoins) >= brand) {
+          const brandAddress = '0x07442396349695396753978693698757';
+          const tx = await Governance.connect(_signer).redeemBrandReward(
+            brandAddress,
+            kart
+          );
+          await tx.wait();
+          /*********** Addd the condition for brandId and other  things */
+
+          const brandId = 8;
+          updatedArray = transactionArray.filter((data) => {
+            if (
+              kart > 0 &&
+              data.brandAddress == brandAddress &&
+              data.id == brandId
+            ) {
+              const { amount } = data;
+              if (amount <= kart) {
+                kart -= amount;
+                return false; // Remove the object from the array
+              } else {
+                data.amount -= kart; // Deduct kart value from the current object
+                kart = 0;
+              }
+            }
+            return true; // Keep the object in the array
+          });
+        } else {
+          return toast.error('You do not have enough coins to redeem');
+        }
+      }
+
       const tx = await Governance.connect(_signer).purchaseItem(
         1000000,
         '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65'
@@ -130,6 +209,17 @@ const CheckoutForm = () => {
       const data1 = await Governance.connect(_signer).getUserTotalCoins(
         _signer.address
       );
+
+      const { _data, error } = await supabase
+        .from('tokensdata') // Replace with your table name
+        .update({ transactions: updatedArray })
+        .eq('email', email)
+        .select();
+      if (error) {
+        console.error('Error updating data:', error);
+      } else {
+        console.log('Data updated successfully:', _data);
+      }
       console.log(parseInt(data1));
     } catch (error) {
       if (error.data) {
@@ -140,6 +230,9 @@ const CheckoutForm = () => {
     }
   };
   const addOrders = async () => {
+    const _provider = await new ethers.BrowserProvider(window.ethereum);
+    const _signer = await _provider.getSigner();
+    console.log("signer",_signer,_provider)
     console.log('updating orders');
     let { data, error } = await supabase
       .from('orders')
@@ -149,7 +242,7 @@ const CheckoutForm = () => {
           shippingdetails: shipping,
           coinsawarded: 10,
           brandid: 5,
-          brandAddress: 'asa',
+          brandAddress: _signer,
           order_amount:
             total_after_redeem === 0 ? total_amount : total_after_redeem,
           timestamp: new Date(),

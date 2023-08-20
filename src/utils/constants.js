@@ -28,17 +28,27 @@ export const links = [
 export const socialLinks = [
   {
     id: 1,
-    icon: <AiFillGithub className='github' color='var(--clr-primary-5)' fontSize='2.5rem' />,
+    icon: (
+      <AiFillGithub
+        className='github'
+        color='var(--clr-primary-5)'
+        fontSize='2.5rem'
+      />
+    ),
     text: 'GitHub',
-    url: 'https://github.com/varunKT001/tomper-wear-ecommerce/',
+    url: 'https://github.com/Flipkart-Grid5-0-Blockchain',
   },
   {
     id: 2,
     icon: (
-      <AiFillLinkedin className='linkedin' color='var(--clr-primary-5)' fontSize='2.5rem' />
+      <AiFillLinkedin
+        className='linkedin'
+        color='var(--clr-primary-5)'
+        fontSize='2.5rem'
+      />
     ),
     text: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/varun-tiwari-454591178',
+    url: 'https://www.linkedin.com/',
   },
   {
     id: 3,
@@ -50,15 +60,19 @@ export const socialLinks = [
       />
     ),
     text: 'Twitter',
-    url: 'https://twitter.com/geekvarun',
+    url: 'https://twitter.com/',
   },
   {
     id: 4,
     icon: (
-      <AiFillYoutube className='youtube' color='var(--clr-primary-5)' fontSize='2.5rem' />
+      <AiFillYoutube
+        className='youtube'
+        color='var(--clr-primary-5)'
+        fontSize='2.5rem'
+      />
     ),
     text: 'YouTube',
-    url: 'https://www.youtube.com/channel/UCUvO6rXuF7VuGhHQI94NIug',
+    url: 'https://www.youtube.com',
   },
 ];
 
