@@ -7,6 +7,11 @@ const Wrapper = styled.section`
   }
   padding: 5rem 0;
 
+  .content {
+    font-size: 20px;
+    color: black;
+  }
+
   background: var(--clr-primary-10);
 
   .header h3 {

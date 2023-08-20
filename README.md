@@ -1,4 +1,4 @@
-<!-- <p align='center'>
+<p align='center'>
 <img src='./src/assets/logo.svg'  width='25%'>
 </p>
 <p align='center'>
@@ -272,4 +272,4 @@ This is privilege is ideal for the delivery-agent(s).
 
 <p align='center'>
 (If you liked the project, give it star 😃)
-</p> -->
+</p>

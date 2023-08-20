@@ -33,18 +33,16 @@ function LoginPage() {
       console.log('Connected');
       const _provider = await new ethers.BrowserProvider(window.ethereum);
       const _signer = await _provider.getSigner();
-      handleChangeAddress(_signer.address)
+      handleChangeAddress(_signer.address);
     } else {
       alert('Please install metamask');
     }
-
   }
   async function registerUserMetamask() {
     const _provider = await new ethers.BrowserProvider(window.ethereum);
     const _signer = await _provider.getSigner();
 
     const contractAddress = ContractAddresses['31337']['Governance'];
-
 
     const Governance = await new ethers.Contract(
       contractAddress,
@@ -158,7 +156,7 @@ function LoginPage() {
                 .then((user) => {
                   registerUserMetamask().then(() => {
                     connectAddress();
-                  handleType(isToggled)
+                    handleType(isToggled);
                     history.push('/');
                   });
                 })
@@ -180,6 +178,7 @@ function LoginPage() {
               row
               aria-labelledby='demo-row-radio-buttons-group-label'
               name='row-radio-buttons-group'
+              defaultValue='brand'
             >
               <FormControlLabel
                 value='brand'
