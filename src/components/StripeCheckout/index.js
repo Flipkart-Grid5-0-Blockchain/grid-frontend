@@ -56,7 +56,6 @@ const CheckoutForm = () => {
   // const stripe = useStripe();
   // const elements = useElements();
 
-  
   // useEffect(() => {
   //   console.log(ContractABI);
   //   console.log(ContractAddresses)
@@ -102,6 +101,8 @@ const CheckoutForm = () => {
       _provider
     );
 
+    console.log('Executing function');
+
     try {
       /*This has to be put in the login page */
       const tx1 = await Governance.connect(_signer).registerUser('sam');
@@ -112,22 +113,27 @@ const CheckoutForm = () => {
         _signer
       ).getUserTotalCoins(_signer.address);
 
-      const __brandAddress = '0x0777';
+      console.log('userCoinsAvailable', userCoinsAvailable);
 
+      const __brandAddress = '0x94749eF103DE6B10f36258d3C958e04099ee80FF';
+      console.log(__brandAddress, _signer.address);
       const userBrandCoins = await Governance.connect(
         _signer
       ).getUserBrandCoins(_signer.address, __brandAddress);
+      console.log('userBrandCoins', userBrandCoins);
 
       const email = currentUser?.email;
 
-      const { transactionArray } = await supabase
+      const { data } = await supabase
         .from('tokensdata') // Replace with your table name
         .select('transactions')
-        .eq('email', email);
-      console.log(transactionArray);
+        .eq('email', 'ww@gmail.com');
+
+      let transactionArray = data[0].transactions;
+      console.log(data[0].transactions, transactionArray);
 
       var updatedArray;
-      console.log("--------Getting into updatioonnnnnnnn--------")
+      console.log('--------Getting into updatioonnnnnnnn--------');
 
       if (kart != 0 && brand == 0) {
         if (parseInt(userCoinsAvailable) >= kart) {
@@ -148,22 +154,10 @@ const CheckoutForm = () => {
             }
             return true;
           });
-
-          const { _data, error } = await supabase
-            .from('tokensdata') // Replace with your table name
-            .update({ transactions: updatedArray })
-            .eq('email', email)
-            .select();
-          if (error) {
-            console.error('Error updating data:', error);
-          } else {
-            console.log('Data updated successfully:', _data);
-          }
         } else {
           return toast.error('You do not have enough coins to redeem');
         }
       }
-
 
       /***********Updationnnnnn of branddddddd reward datatataatat-------- */
       if (kart == 0 && brand != 0) {
@@ -179,17 +173,17 @@ const CheckoutForm = () => {
           const brandId = 8;
           updatedArray = transactionArray.filter((data) => {
             if (
-              kart > 0 &&
+              brand > 0 &&
               data.brandAddress == brandAddress &&
               data.id == brandId
             ) {
               const { amount } = data;
-              if (amount <= kart) {
-                kart -= amount;
+              if (amount <= brand) {
+                brand -= amount;
                 return false; // Remove the object from the array
               } else {
-                data.amount -= kart; // Deduct kart value from the current object
-                kart = 0;
+                data.amount -= brand; // Deduct brand value from the current object
+                brand = 0;
               }
             }
             return true; // Keep the object in the array
@@ -232,7 +226,6 @@ const CheckoutForm = () => {
   const addOrders = async () => {
     const _provider = await new ethers.BrowserProvider(window.ethereum);
     const _signer = await _provider.getSigner();
-    console.log("signer",_signer,_provider)
     console.log('updating orders');
     let { data, error } = await supabase
       .from('orders')
@@ -251,8 +244,6 @@ const CheckoutForm = () => {
       .select();
 
     if (error) console.error(error);
-    // else console.log("mydata",data);
-    // console.log(data[0].order_id);
     setOrderId(data[0].order_id);
     return data[0].order_id;
   };
@@ -301,22 +292,25 @@ const CheckoutForm = () => {
   };
 
   const handleSubmit = async (ev) => {
-    console.log('user', currentUser);
     ev.preventDefault();
     setProcessing(true);
-    console.log(total_amount, total_after_redeem, brand, kart);
-    const __id = await addOrders();
-    await addTokens();
-    await addBrandsCoins(__id);
-    await addTxs();
+    // console.log(total_amount, total_after_redeem, brand, kart);
+    try {
+      await addTokens();
+      const __id = await addOrders();
+      await addBrandsCoins(__id);
+      await addTxs();
+    } catch (err) {
+      console.log('At this block', err);
+    }
     setError(null);
     setProcessing(false);
     setSucceeded(true);
     // await placeOrder();
-    setTimeout(() => {
-      clearCart();
-      history.push('/');
-    }, 5000);
+    // setTimeout(() => {
+    //   clearCart();
+    //   history.push('/');
+    // }, 5000);
     //   }
   };
 

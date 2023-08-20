@@ -13,7 +13,7 @@ import ContractAddresses from '../../utils/Contract-Constants/address.json';
 function RegisterPage() {
   const history = useHistory();
   const mounted = useMounted();
-  const { registerUser, signInWithGoogle } = useUserContext();
+  const { registerUser, signInWithGoogle,handleType, handleChangeAddress } = useUserContext();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -27,6 +27,18 @@ function RegisterPage() {
     setToggle(!isToggled);
   };
 
+  async function connectAddress() {
+    if (typeof window.ethereum !== 'undefined') {
+      window.ethereum.request({ method: 'eth_requestAccounts', params: [] });
+      console.log('Connected');
+      const _provider = await new ethers.BrowserProvider(window.ethereum);
+      const _signer = await _provider.getSigner();
+      handleChangeAddress(_signer.address)
+    } else {
+      alert('Please install metamask');
+    }
+
+  }
   async function registerUserMetamask() {
     const _provider = await new ethers.BrowserProvider(window.ethereum);
     const _signer = await _provider.getSigner();
@@ -69,6 +81,7 @@ function RegisterPage() {
     setIsSubmitting(true);
     registerUser(email, password)
       .then((res) => {
+        handleType(isToggled);
         history.push('/');
       })
       .catch((err) => {
@@ -171,6 +184,7 @@ function RegisterPage() {
               signInWithGoogle()
                 .then((user) => {
                   registerUserMetamask().then(() => {
+                    handleType(isToggled);
                     history.push('/');
                   });
                 })

@@ -37,10 +37,12 @@ function App() {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI';
 
   /*Function to connect to metamask */
-  async function connect() {
+  async function connectAddress() {
     if (typeof window.ethereum !== 'undefined') {
       window.ethereum.request({ method: 'eth_requestAccounts', params: [] });
       console.log('Connected');
+      const _provider = await new ethers.BrowserProvider(window.ethereum);
+      const _signer = await _provider.getSigner();
     } else {
       alert('Please install metamask');
     }
@@ -69,7 +71,7 @@ function App() {
   }
 
   useEffect(() => {
-    connect();
+    connectAddress();
     getProviderAndSigner();
     connectSupabase();
   }, []);
