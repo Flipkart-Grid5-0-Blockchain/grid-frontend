@@ -78,7 +78,7 @@ function CompactCard({ param, setExpanded }) {
       <div className='detail'>
         <span>{param.title}</span>
         {param.type === 0 ? (
-          <span>${param.value}</span>
+          <span>{param.value}</span>
         ) : (
           <span className='input-container'>
             <input

@@ -21,8 +21,7 @@ const featured = [
   {
     id: 1,
     name: 'Samsung Galaxy S21 Ultra 5G',
-    image:
-      'https://etimg.etb2bimg.com/photo/80272433.cms',
+    image: 'https://etimg.etb2bimg.com/photo/80272433.cms',
     price: 6499900,
     images: [
       {
@@ -43,6 +42,7 @@ const featured = [
     category: 'tech',
     colors: ['#ff0000', '#00ff00', '#0000ff'],
     stars: 4.5,
+    brandAddress: '0x976EA74026E726554dB657fA54763abd0C3a0aa9',
   },
   {
     id: 2,
@@ -69,6 +69,7 @@ const featured = [
     category: 'shoes',
     colors: ['#ff0000', '#00ff00', '#0000ff'],
     stars: 4.5,
+    brandAddress: '0x14dC79964da2C08b23698B3D3cc7Ca32193d9955',
   },
   {
     id: 3,
@@ -94,6 +95,7 @@ const featured = [
     category: 'clothing',
     colors: ['#ff0000', '#00ff00', '#0000ff'],
     stars: 4.5,
+    brandAddress: '0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f',
   },
   {
     id: 4,
@@ -119,6 +121,7 @@ const featured = [
     category: 'shoes',
     colors: ['#ff0000', '#00ff00', '#0000ff'],
     stars: 4.5,
+    brandAddress: '0xFABB0ac9d68B0B445fB7357272Ff202C5651694a',
   },
   {
     id: 6,
@@ -145,12 +148,12 @@ const featured = [
     category: 'clothing',
     colors: ['#ff0000', '#00ff00', '#0000ff'],
     stars: 4.5,
+    brandAddress: '0x23618e81E3f5cdF7f54C3d65f7FBc0aBf5B21E8f',
   },
   {
     id: 5,
     name: 'Puma White Tshirt',
-    image:
-      'https://www.sportsdirect.com/images/imgzoom/62/62030002_xxl.jpg',
+    image: 'https://www.sportsdirect.com/images/imgzoom/62/62030002_xxl.jpg',
     price: 1119900,
     images: [
       {
@@ -159,7 +162,7 @@ const featured = [
       },
     ],
     description:
-      "Puma | Training T-Shirt Mens | Short Sleeve Performance T-Shirts | SportsDirect.com",
+      'Puma | Training T-Shirt Mens | Short Sleeve Performance T-Shirts | SportsDirect.com',
     rating: 5,
     numberOfReviews: 0,
     featured: true,
@@ -171,6 +174,7 @@ const featured = [
     category: 'clothing',
     colors: ['#ff0000', '#00ff00', '#0000ff'],
     stars: 4.5,
+    brandAddress: '0xFABB0ac9d68B0B445fB7357272Ff202C5651694a',
   },
 
   {
@@ -185,8 +189,7 @@ const featured = [
         filename: 'product',
       },
     ],
-    description:
-      "Nike Dunk High By You Custom Men's Shoes",
+    description: "Nike Dunk High By You Custom Men's Shoes",
     rating: 4.3,
     numberOfReviews: 0,
     featured: true,
@@ -198,6 +201,7 @@ const featured = [
     category: 'shoes',
     colors: ['#ff0000', '#00ff00', '#0000ff'],
     stars: 4.5,
+    brandAddress: '0x14dC79964da2C08b23698B3D3cc7Ca32193d9955',
   },
   {
     id: 8,
@@ -212,7 +216,7 @@ const featured = [
       },
     ],
     description:
-      "Apple MacBook Pro M1 Pro (2021) 16 Gris sidéral 16Go/512Go (MK183FN/A)",
+      'Apple MacBook Pro M1 Pro (2021) 16 Gris sidéral 16Go/512Go (MK183FN/A)',
     rating: 5,
     numberOfReviews: 0,
     featured: true,
@@ -224,6 +228,7 @@ const featured = [
     category: 'tech',
     colors: ['#ff0000', '#00ff00', '#0000ff'],
     stars: 4.5,
+    brandAddress: '0x2546BcD3c84621e976D8185a91A922aE77ECEc30',
   },
 ];
 const initialState = {

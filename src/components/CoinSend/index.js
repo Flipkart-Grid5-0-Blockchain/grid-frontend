@@ -21,39 +21,45 @@ const CoinSend = ({ total_amount, shipping_fee }) => {
   const [value, setValue] = useState(0);
 
   async function handleRewardCall() {
-    const _provider = await new ethers.BrowserProvider(window.ethereum);
-    const _signer = await _provider.getSigner();
+    try{
+        const _provider = await new ethers.BrowserProvider(window.ethereum);
+        const _signer = await _provider.getSigner();
 
-    console.log(address, value, ContractAddresses['31337']['Governance']);
-    const governanceAddress = ContractAddresses['31337']['Governance'];
+        console.log(address, value, ContractAddresses['31337']['Governance']);
+        const governanceAddress = ContractAddresses['31337']['Governance'];
 
-    const Governance = await new ethers.Contract(
-      governanceAddress,
-      ContractABI,
-      _provider
-    );
+        const Governance = await new ethers.Contract(
+          governanceAddress,
+          ContractABI,
+          _provider
+        );
 
-    const rewardAddress = ContractAddresses['31337']['RewardToken'];
-    const RewardToken = await new ethers.Contract(
-      rewardAddress,
-      RewardABI,
-      _provider
-    );
+        const rewardAddress = ContractAddresses['31337']['RewardToken'];
+        const RewardToken = await new ethers.Contract(
+          rewardAddress,
+          RewardABI,
+          _provider
+        );
 
-    console.log(address, value, ContractAddresses['31337']['Governance']);
-    const tx = await RewardToken.connect(_signer).approve(
-      ContractAddresses['31337']['Governance'],
-      100
-    );
-    await tx.wait();
-    const tx1 = await Governance.connect(_signer).rewardUser(
-      address.toString(),
-      value
-    );
-    await tx1.wait();
+        console.log(address, value, ContractAddresses['31337']['Governance']);
+        const tx = await RewardToken.connect(_signer).approve(
+          ContractAddresses['31337']['Governance'],
+          100
+        );
+        await tx.wait();
+        const tx1 = await Governance.connect(_signer).rewardUser(
+          address.toString(),
+          value
+        );
+        await tx1.wait();
 
-    //Left to update supabase
-    console.log('Transaction completed');
+        //Left to update supabase
+        console.log('Transaction completed');
+
+        
+    }catch(e){
+      console.log(e);
+    }
   }
 
   return (

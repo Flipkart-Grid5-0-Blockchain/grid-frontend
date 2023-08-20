@@ -18,9 +18,9 @@ const HomePage = () => {
     'https://xjpwqafgdolpfjbfwtxt.supabase.co',
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqcHdxYWZnZG9scGZqYmZ3dHh0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTIwMjAxNjcsImV4cCI6MjAwNzU5NjE2N30.x_Tebi8nzJfF2eQyJTjRRqmrGHieA1CxpnLSyrhUAUI'
   );
- console.log(currentUser);
- console.log("i m user", userType);
- console.log("my address", userAddress)
+//  console.log(currentUser);
+//  console.log("i m user", userType);
+//  console.log("my address", userAddress)
 
   const dataArray = [
     {
@@ -52,8 +52,8 @@ const HomePage = () => {
       const _provider = await new ethers.BrowserProvider(window.ethereum);
       const _signer = await _provider.getSigner();
       setProvider(_provider);
-      console.log(_signer.address);
-      console.log(_provider, _signer.address);
+      // console.log(_signer.address);
+      // console.log(_provider, _signer.address);
     } catch (err) {
       console.log(err);
     }
@@ -67,7 +67,7 @@ const HomePage = () => {
         .from('tokensdata') // Replace with your table name
         .select('transactions')
         .eq('email', email);
-      console.log(data);
+      // console.log(data);
 
       let availableCoins = 0;
       let brandCoins = 0;
@@ -110,11 +110,11 @@ const HomePage = () => {
       }
 
       // Now temporaryArray contains filtered objects
-      console.log('Temporary Array:', temporaryArray);
-      console.log(brandAddressesArray, deductionAmountsArray);
+      // console.log('Temporary Array:', temporaryArray);
+      // console.log(brandAddressesArray, deductionAmountsArray);
       // Final values of availableCoins and brandCoins
-      console.log('Available Coins:', availableCoins);
-      console.log('Brand Coins:', brandCoins);
+      // console.log('Available Coins:', availableCoins);
+      // console.log('Brand Coins:', brandCoins);
       const updatedTransactions = temporaryArray;
 
       // Update the 'transactions' column in the Supabase table

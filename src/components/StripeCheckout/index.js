@@ -31,7 +31,7 @@ const supabase = createClient(
 // const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = () => {
-  const {
+  let {
     cart,
     total_amount,
     total_after_redeem,
@@ -44,6 +44,13 @@ const CheckoutForm = () => {
   const { currentUser } = useUserContext();
   const history = useHistory();
   const { products } = useProductsContext();
+
+  async function getAddress() {
+    const _provider = await new ethers.BrowserProvider(window.ethereum);
+    const _signer = await _provider.getSigner();
+    const address = await _signer.address;
+    return address;
+  }
 
   // STRIPE STUFF
   const [succeeded, setSucceeded] = useState(false);
@@ -105,9 +112,10 @@ const CheckoutForm = () => {
 
     try {
       /*This has to be put in the login page */
-      const tx1 = await Governance.connect(_signer).registerUser('sam');
-      await tx1.wait();
-      console.log(kart);
+      // const tx1 = await Governance.connect(_signer).registerUser('sam');
+      // await tx1.wait();
+      // console.log(kart);
+      // console.log("here is signer",_signer.address)
 
       const userCoinsAvailable = await Governance.connect(
         _signer
@@ -115,7 +123,7 @@ const CheckoutForm = () => {
 
       console.log('userCoinsAvailable', userCoinsAvailable);
 
-      const __brandAddress = '0x94749eF103DE6B10f36258d3C958e04099ee80FF';
+      const __brandAddress = _signer.address;
       console.log(__brandAddress, _signer.address);
       const userBrandCoins = await Governance.connect(
         _signer
@@ -127,7 +135,7 @@ const CheckoutForm = () => {
       const { data } = await supabase
         .from('tokensdata') // Replace with your table name
         .select('transactions')
-        .eq('email', 'ww@gmail.com');
+        .eq('email', currentUser.email);
 
       let transactionArray = data[0].transactions;
       console.log(data[0].transactions, transactionArray);
@@ -155,7 +163,7 @@ const CheckoutForm = () => {
             return true;
           });
         } else {
-          return toast.error('You do not have enough coins to redeem');
+          return toast.error('You do not have enough coins to redeem!');
         }
       }
 
@@ -189,16 +197,18 @@ const CheckoutForm = () => {
             return true; // Keep the object in the array
           });
         } else {
-          return toast.error('You do not have enough coins to redeem');
+          return toast.error('You do not have enough coins to redeem!!');
         }
       }
-
+      const userAddress = await getAddress();
       const tx = await Governance.connect(_signer).purchaseItem(
         1000000,
-        '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65'
+        userAddress
       );
-      await tx.wait();
-      console.log(tx);
+      // const receipt = tx.response();
+      const receipt = await tx.wait();
+      console.log(receipt, 'Receipt og transaction purchase itewm');
+      // console.log('txxxxxxxxxxxxxxxxxxxx', tx);
 
       const data1 = await Governance.connect(_signer).getUserTotalCoins(
         _signer.address
@@ -233,9 +243,9 @@ const CheckoutForm = () => {
         {
           email: currentUser.email,
           shippingdetails: shipping,
-          coinsawarded: 10,
-          brandid: 5,
-          brandAddress: _signer,
+          // amount: ,
+          brandid: cart.brandId,
+          brandAddress: _signer.address,
           order_amount:
             total_after_redeem === 0 ? total_amount : total_after_redeem,
           timestamp: new Date(),
@@ -252,10 +262,12 @@ const CheckoutForm = () => {
     console.log('updating brands');
 
     for (const item of cart) {
-      console.log('id', orderId);
+      console.log('hkjhaskjdhas', item);
       const { data } = await supabase.rpc('add_brands_data', {
         _brandid: item.company_id,
         _email: currentUser.email,
+        _brandaddress: item.brandAddress,
+        _useraddress: await getAddress(),
         _transaction: {
           order_id: orderId,
           order_amount:
@@ -275,15 +287,20 @@ const CheckoutForm = () => {
 
   const addTxs = async () => {
     console.log('updating transactions');
-
+    const userAddress = await getAddress();
+    const amountVal =
+      total_after_redeem === 0
+        ? total_amount * 0.0002
+        : total_after_redeem * 0.0002;
+    console.log("amountsDtaa", amountVal, total_amount, total_after_redeem)
     let { data, error } = await supabase.rpc('add_tokens_data', {
       _email: currentUser.email,
-      _address: '0x0788', // change in supabase that only email has to be removed
+      _address: userAddress, // change in supabase that only email has to be removed
       _transaction: {
         timestamp: new Date(),
         expiry: new Date(new Date().setMonth(new Date().getMonth() + 2)),
         type: 0,
-        coins_awarded: 10,
+        amount: parseInt(amountVal > 200 ? 200 : amountVal),
       },
     });
 
@@ -307,11 +324,11 @@ const CheckoutForm = () => {
     setProcessing(false);
     setSucceeded(true);
     // await placeOrder();
-    // setTimeout(() => {
-    //   clearCart();
-    //   history.push('/');
-    // }, 5000);
-    //   }
+    setTimeout(() => {
+      clearCart();
+      history.push('/');
+    }, 5000);
+    // }
   };
 
   return (
@@ -377,3 +394,32 @@ const StripeCheckout = () => {
 };
 
 export default StripeCheckout;
+// [
+//   {
+//     type: 1,
+//     amount: 50,
+//     expiry: '2023-08-31T00:00:00.000Z',
+//     brandId: 1,
+//     brandAddress: '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65',
+//   },
+//   {
+//     type: 2,
+//     amount: 50,
+//     expiry: '2023-09-15T00:00:00.000Z',
+//     brandId: 2,
+//     brandAddress: '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65',
+//   },
+//   {
+//     type: 1,
+//     amount: 75,
+//     expiry: '2023-08-25T00:00:00.000Z',
+//     brandId: 1,
+//     brandAddress: '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65',
+//   },
+//   {
+//     type: 0,
+//     expiry: '2023-10-20T15:10:25.272Z',
+//     timestamp: '2023-08-20T15:10:25.272Z',
+//     coins_awarded: 10,
+//   },
+// ];

@@ -7,7 +7,7 @@ import AmountButtons from '../AmountButtons/';
 
 const AddToCart = ({ product }) => {
   const { addToCart } = useCartContext();
-  const { id, stock, colors, sizes, company_id, company} = product;
+  const { id, stock, colors, sizes, company_id, company, brandAddress} = product;
   const [mainColor, setMainColor] = useState(colors[0]);
   const [mainSize, setMainSize] = useState(sizes[0]);
   const [amount, setAmount] = useState(1);
@@ -87,6 +87,7 @@ const AddToCart = ({ product }) => {
               amount,
               company_id,
               company,
+              brandAddress,
               product,
             )
           }

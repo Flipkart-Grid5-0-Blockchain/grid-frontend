@@ -5,7 +5,7 @@ const Wrapper = styled.main`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     margin-bottom: 10rem;
     gap: 3rem;
@@ -13,8 +13,8 @@ const Wrapper = styled.main`
 
   .left-cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5rem;
   }
 
   .mid-heading {

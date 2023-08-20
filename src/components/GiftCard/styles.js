@@ -120,6 +120,10 @@ const Wrapper = styled.div`
       width: 80%;
     }
   }
+  .btn a{
+    text-decoration: none;
+    color: white;
+  }
 `;
 
 export default Wrapper;
