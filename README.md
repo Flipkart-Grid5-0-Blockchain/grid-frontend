@@ -44,7 +44,6 @@ Join us as we embark on a journey to reshape the future of online shopping. With
 Users shopping through this platform enjoys following features:
 
 - [x] User authentication using google firebase.
-- [x] Secure payments via stripe.
 - [x] Users can change their username and display image.
 - [x] Users can filter products on various parameters.
 - [x] Users can sort products according to price and name.
@@ -55,110 +54,40 @@ Users shopping through this platform enjoys following features:
 - [x] Users can send feedbacks to the owner.
 - [x] Responsive for all screen sizes.
 
-#### Admin
+Following are some of the unique features and technologies implemented in Smartkart utilizing blockchain technology and an innovative token economics:
 
-The admin panel of TomperWear contains three classes of admins:
+- [x] <b>Decentralized Shopping Experience</b>: SmartKart utilizes Web3 technology to ensure secure, transparent, and tamper-proof transactions on the blockchain, guaranteeing a trusted shopping environment.
+- [x] <b>Token Reward System:</b> Our platform introduces a novel tokenomics framework, rewarding loyal customers with exclusive tokens for their purchases. These tokens grant customers a stake in the platform's growth and success.
+- [x] <b>Customer Incentivization:</b> Users are incentivized to leave genuine product reviews through token rewards. Our proprietary algorithm evaluates the authenticity of reviews, fostering a community-driven, honest feedback loop.
+- [x] <b>Verified Vendor Network:</b> SmartKart partners with trusted vendors, verified on the blockchain, ensuring that customers have access to high-quality products from reputable sources.
+- [x] <b>Data Privacy and Control:</b> Our decentralized architecture grants users greater control over their personal data, ensuring data privacy is upheld without compromising the shopping experience.
+- [x] <b>Token Utility:</b> SmartKart tokens go beyond transactional value; they can be used to unlock discounts, access exclusive promotions, and participate in platform governance decisions.
+- [x] <b>Community Engagement:</b> The token-powered ecosystem encourages active user participation, building a vibrant community of shoppers, vendors, and stakeholders.
+- [x] <b>Token Wallet:</b> Every user gets a secure digital wallet to store and manage their earned tokens, enabling easy tracking and redemption of rewards.
 
-**1. Super privileged admin**
-Super privileged admins are the topmost in the hierarchy. They have the following permissions:
+We are also proposing an exclusive feature of <>Review Incentivization</> that is implemented for the first time in Smartkart:
 
-- [x] Can view, create, update, and delete admin users.
-- [x] Can view, create, update, and delete products.
-- [x] Can view orders and update their status.
-- [x] Can delete orders.
+- [ ] <b>Community Engagement:</b> Authenticity Algorithm: SmartKart employs a sophisticated algorithm that evaluates the genuineness of product reviews. Users are rewarded with tokens for leaving honest feedback, driving meaningful interactions.
+- [ ] <b>Token Wallet:</b> Trustworthy Feedback: With the blockchain verifying review authenticity, customers can rely on accurate feedback, making informed purchasing decisions.
 
-This is privilege is ideal for the owner(s) of the bussiness.
+#### Dashboards
 
-**2. Moderate privileged admin**
-Moderate privileged admins comes below Super privileged admins. They have the following permissions:
+Smartkart provides it's users an easy to use dashboard interface.
 
-- [ ] Can view, create, update, and delete admin users.
-- [x] Can view, create, update, and delete products.
-- [x] Can view orders and update their status.
-- [x] Can delete orders.
+**1. Seller Dashboard**
+This is the dashboard which is available for the aid of sellers. Sellers can keep a track of teir dispatcked orders and transactions made with customers.
 
-This is privilege is ideal for the manager(s).
+<p align='center'>
+<img src='./assets/Smartkart-Dashboard.png'>
+</p>
 
-**3. Low privileged admin**
-Low privileged admins are the lowermost in the hierarchy and have the least amount of privileges. The have the following permission:
+**2. Customer Dashboard**
 
-- [ ] Can view, create, update, and delete admin users.
-- [ ] Can view, create, update, and delete products.
-- [x] Can view orders and update their status.
-- [ ] Can delete orders.
+This dashboard functionality is available to help the customers maintain their order history and also to keep track of the tokens that they have received from different brands.
 
-This is privilege is ideal for the delivery-agent(s).
-
-**Here is a table dipicting the admin privileges for better clarity**
-
-<table>
-<thead>
-  <tr>
-    <th> </th>
-    <th colspan="4">Admins</th>
-    <th colspan="4">Product</th>
-    <th colspan="3">Orders</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td></td>
-    <td><b><u>view</u></b></td>
-    <td><b><u>create</u></b></td>
-    <td><b><u>update</u></b></td>
-    <td><b><u>delete</u></b></td>
-    <td><b><u>view</u></b></td>
-    <td><b><u>create</u></b></td>
-    <td><b><u>update</u></b></td>
-    <td><b><u>delete</u></b></td>
-    <td><b><u>view</u></b></td>
-    <td><b><u>update</u></b></td>
-    <td><b><u>delete</u></b></td>
-  </tr>
-  <tr>
-    <td><b>Super</b></td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-  </tr>
-  <tr>
-    <td><b>Moderate</b></td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>✔</td>
-  </tr>
-  <tr>
-    <td><b>Low</b></td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td>✔</td>
-    <td>✔</td>
-    <td>-</td>
-  </tr>
-</tbody>
-</table>
+<p align='center'>
+<img src='./assets/Smartkart-Dashboard.png'>
+</p>
 
 ## ⚙ Tools and Technologies used
 
