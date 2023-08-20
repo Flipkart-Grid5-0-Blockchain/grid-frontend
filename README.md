@@ -99,15 +99,12 @@ This dashboard functionality is available to help the customers maintain their o
 4. [Firebase](https://firebase.google.com/)
 5. [Formspree](https://formspree.io/)
 6. [Material-ui](https://mui.com/material-ui/)
+7. [Supabase-SDK](https://supabase.com/)
 
-#### [Backend](https://github.com/varunKT001/tomper-wear-ecommerce-backend)
+#### [Blockchain](https://github.com/varunKT001/tomper-wear-ecommerce-backend)
 
-1. [Node.js](https://nodejs.org/en/)
-2. [Express.js](https://expressjs.com/)
-3. [MongoDB](https://www.mongodb.com/)
-4. [JWT](https://jwt.io/)
-5. [Cloudinary](https://cloudinary.com/)
-6. [Bcrypt.js](https://github.com/dcodeIO/bcrypt.js)
+1. [Hardhar](https://hardhat.org/)
+2. [Ethers](https://docs.ethers.org/v5/)
 
 ## 🛠 Installation and setup
 

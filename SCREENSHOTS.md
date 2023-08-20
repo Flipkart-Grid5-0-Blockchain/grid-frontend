@@ -37,7 +37,7 @@
 ## Seller page
 
 <p align='center'>
-<img src='./assets/Smartkart-Dashboard.png'>
+<img src='./assets/Smartkart-DashBoard.png'>
 </p>
 
 ## Register Page
