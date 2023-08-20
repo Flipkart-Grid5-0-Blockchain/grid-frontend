@@ -12,10 +12,12 @@ const Wrapper = styled.div`
     padding-left: 3rem;
     position: relative;
     cursor: pointer;
-    background: var(--clr-primary-3);
+    background: var(--clr-primary-8);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
   }
   .CompactCard:hover {
     box-shadow: none !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8) !important;
   }
 
   .input {
