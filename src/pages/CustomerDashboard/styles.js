@@ -26,7 +26,7 @@ const Wrapper = styled.main`
 
   .mid-dash {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
     justify-content: space-between;
     align-items: center;

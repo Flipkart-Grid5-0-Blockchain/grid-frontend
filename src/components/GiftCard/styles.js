@@ -5,7 +5,6 @@ const Wrapper = styled.div`
     display: flex;
     flex: 1;
     border-radius: 0.7rem;
-    color: white;
     padding-top: 2rem;
     padding-bottom: 2rem;
     padding-right: 3rem;
@@ -13,6 +12,7 @@ const Wrapper = styled.div`
     position: relative;
     cursor: pointer;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    background: aliceblue;
   }
   .CompactCard:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7) !important;
@@ -47,13 +47,25 @@ const Wrapper = styled.div`
     font-weight: bold;
   }
 
+  .btn-container {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .text-field {
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
   /* sideDetail*/
   .detail {
-    flex: 2;
+    flex: 3;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
+    gap: 0.5rem;
+    align-items: center;
   }
 
   .detail > span:nth-child(1) {

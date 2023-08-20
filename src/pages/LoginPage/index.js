@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Wrapper from './styles';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import { useUserContext } from '../../context/user_context';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import useMounted from '../../hooks/useMounted';
@@ -124,7 +129,7 @@ function LoginPage() {
           {/* end links */}
           <Button
             type='submit'
-            className='btn login-btn'
+            className='btn-new login-btn'
             disabled={isSubmitting}
           >
             login
@@ -135,7 +140,7 @@ function LoginPage() {
           </div>
           <button
             type='button'
-            className='btn google-btn'
+            className='btn-new google-btn'
             disabled={isSubmitting}
             onClick={() => {
               signInWithGoogle()
@@ -153,14 +158,37 @@ function LoginPage() {
           </button>
         </form>
 
-        <div>
-          <button onClick={handleToggle}>
+        <div className='role-picker'>
+          <FormControl>
+            <FormLabel id='demo-row-radio-buttons-group-label'>
+              <div className='role-text'>Select a Role</div>{' '}
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-labelledby='demo-row-radio-buttons-group-label'
+              name='row-radio-buttons-group'
+            >
+              <FormControlLabel
+                value='brand'
+                control={<Radio />}
+                label='Brand'
+                onClick={handleToggle}
+              />
+              <FormControlLabel
+                value='customer'
+                control={<Radio />}
+                label='Customer'
+                onClick={handleToggle}
+              />
+            </RadioGroup>
+          </FormControl>
+          <button className='btn' onClick={handleToggle}>
             {isToggled ? 'Login as Customer' : 'Login as Brand'}
           </button>
-          <p>
+          {/* <p>
             Toggle is{' '}
             {isToggled ? 'Logged in as Customer' : 'Logged in as Brand '}.
-          </p>
+          </p> */}
         </div>
       </div>
     </Wrapper>

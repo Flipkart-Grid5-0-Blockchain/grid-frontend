@@ -153,9 +153,10 @@ const CustomerDashBoard = () => {
           <CoinSend />
         </div>
 
-        <div className='mid-heading'>GIFT COUPONS</div>
+        <div className='mid-heading'>BRAND COUPONS</div>
         <div className='mid-dash'>
           <GiftCard
+            company='Apple'
             title='Total Coins left'
             color={cardsData[1].color}
             value={2}
@@ -163,6 +164,7 @@ const CustomerDashBoard = () => {
           />
 
           <GiftCard
+            company='Apple'
             title='Total Coins left'
             color={cardsData[1].color}
             value={2}
@@ -170,6 +172,7 @@ const CustomerDashBoard = () => {
           />
 
           <GiftCard
+            company='Apple'
             title='Total Coins left'
             color={cardsData[1].color}
             value={2}
@@ -177,6 +180,7 @@ const CustomerDashBoard = () => {
           />
 
           <GiftCard
+            company='Apple'
             title='Total Coins left'
             color={cardsData[1].color}
             value={2}
@@ -184,18 +188,21 @@ const CustomerDashBoard = () => {
           />
 
           <GiftCard
+            company='Apple'
             title='Total Coins left'
             color={cardsData[1].color}
             value={2}
             type={1}
           />
           <GiftCard
+            company='Apple'
             title='Total Coins left'
             color={cardsData[1].color}
             value={2}
             type={1}
           />
           <GiftCard
+            company='Apple'
             title='Total Coins left'
             color={cardsData[1].color}
             value={2}
