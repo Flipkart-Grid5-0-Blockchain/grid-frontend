@@ -78,8 +78,8 @@ Smartkart provides it's users an easy to use dashboard interface.
 This is the dashboard which is available for the aid of sellers. Sellers can keep a track of teir dispatcked orders and transactions made with customers.
 
 <p align='center'>
-<img src='./assets/Smartkart-SellerDashBoard1.png'>
-<img src='./assets/Smartkart-SellerDashBoard2.png'>
+<img src='./assets/Smartkart-SellerDashboard1.png'>
+<img src='./assets/Smartkart-SellerDashboard2.png'>
 
 </p>
 
@@ -145,8 +145,6 @@ This dashboard functionality is available to help the customers maintain their o
       <a href="https://www.linkedin.com/in/ishaan-sharma-195770202/">LinkedIn</a>
       <a href="https://github.com/sharmaishaan21">Github</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <img src="./assets/ayush.jpeg" width="150px" alt="GSSoC'22" />
       <br/>
@@ -155,8 +153,7 @@ This dashboard functionality is available to help the customers maintain their o
       <a href="https://www.linkedin.com/in/ayush-garg-4ba2b1206/">LinkedIn</a>
       <a href="https://github.com/Ayush-019">Github</a>
     </td>
-  </tr>
-  <tr>
+
     <td align="center">
       <img src="./assets/samar.jpeg" width="150px" alt="GSSoC'22" />
       <br/>
@@ -165,5 +162,7 @@ This dashboard functionality is available to help the customers maintain their o
       <a href="https://www.linkedin.com/in/smr0x03/">LinkedIn</a>
       <a href="https://github.com/Smr0303">Github</a>
     </td>
+
   </tr>
+
 </table>
