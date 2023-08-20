@@ -12,7 +12,7 @@ const Services = () => {
             <br />
             Our command
           </h3>
-          <p>
+          <p className='content'>
             Customer satisfaction is the top-most priorty for Smartkart. It is
             the only the trust and support of our customers that we are now
             reaching greater heights.

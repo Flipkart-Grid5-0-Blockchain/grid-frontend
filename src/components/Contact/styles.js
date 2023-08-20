@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 const Wrapper = styled.section`
   padding: 5rem 0;
+
+  .info {
+    font-size: 20px;
+  }
   h3 {
     text-transform: none;
   }

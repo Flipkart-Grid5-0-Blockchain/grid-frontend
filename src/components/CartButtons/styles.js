@@ -45,7 +45,7 @@ const Wrapper = styled.div`
     border-color: transparent;
     font-size: 1.5rem;
     cursor: pointer;
-    color: var(--clr-grey-1);
+    color: white;
     letter-spacing: var(--spacing);
     svg {
       margin-left: 5px;

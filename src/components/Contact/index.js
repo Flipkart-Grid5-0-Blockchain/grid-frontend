@@ -23,7 +23,7 @@ const Contact = () => {
         <div className='content'>
           <div className='feedback-info'>
             {feedbackText && <p className='success-text'>{feedbackText}</p>}
-            <p>
+            <p className='info'>
               Customer satisfaction is our top-most priorty. Today were are here
               only due to your trust and support, and our constant efforts to
               make the platform better everyday. Please provide your valuable
