@@ -21,6 +21,7 @@ import { payment_url as url } from '../../utils/constants';
 import { DataGrid } from '@material-ui/data-grid';
 import { createClient } from '@supabase/supabase-js';
 import { useProductsContext } from '../../context/products_context';
+import RewardABI from '../../utils/Contract-Constants/rewardAbi.json';
 
 const supabase = createClient(
   'https://xjpwqafgdolpfjbfwtxt.supabase.co',
@@ -55,6 +56,7 @@ const CheckoutForm = () => {
   // const stripe = useStripe();
   // const elements = useElements();
 
+  
   // useEffect(() => {
   //   console.log(ContractABI);
   //   console.log(ContractAddresses)
@@ -140,6 +142,9 @@ const CheckoutForm = () => {
     }
   };
   const addOrders = async () => {
+    const _provider = await new ethers.BrowserProvider(window.ethereum);
+    const _signer = await _provider.getSigner();
+    console.log("signer",_signer,_provider)
     console.log('updating orders');
     let { data, error } = await supabase
       .from('orders')
@@ -149,7 +154,7 @@ const CheckoutForm = () => {
           shippingdetails: shipping,
           coinsawarded: 10,
           brandid: 5,
-          brandAddress: 'asa',
+          brandAddress: _signer,
           order_amount:
             total_after_redeem === 0 ? total_amount : total_after_redeem,
           timestamp: new Date(),

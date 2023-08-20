@@ -23,13 +23,29 @@ const supabase = createClient(
 const DashBoard = () => {
   const [order, setOrder] = useState(true);
   const [ordersData, setOrdersData] = useState([]);
+  const [signerAddress, setSignerAddress] = useState('');
+
+  useEffect(() => {
+      const signerAdd = async() => {
+      const _provider = await new ethers.BrowserProvider(window.ethereum);
+      const _signer = await _provider.getSigner();
+      
+      console.log('signer', _signer);
+      setSignerAddress(_signer._address);
+    }
+    signerAdd();
+    }, [order]);
+
 
   const fetchOrders = async () => {
+    console.log("signers", signerAddress);
     console.log('fetching orders');
     const { data } = await supabase.from('orders').select();
     console.log(data);
+
     setOrdersData(data);
   };
+
   const fetchOrderTansactionData = async () => {
     const _provider = await new ethers.BrowserProvider(window.ethereum);
     const _signer = await _provider.getSigner();
@@ -161,17 +177,6 @@ const DashBoard = () => {
     },
   ];
 
-  const rowsOrder = [];
-  // orders &&
-  //   orders.forEach((item) => {
-  //     rowsOrder.push({
-  //       id: item._id,
-  //       itemsQty: item.orderItems.length,
-  //       amount: item.totalPrice,
-  //       status: item.orderStatus,
-  //     });
-  //   });
-
   return (
     <Wrapper className='page-100'>
       <div>
@@ -196,7 +201,7 @@ const DashBoard = () => {
             <h1 id='productListHeading'>ALL ORDERS</h1>
 
             <DataGrid
-              rows={rowsOrder}
+              rows={ordersRow}
               columns={ordersTableColumn}
               pageSize={10}
               disableSelectionOnClick
