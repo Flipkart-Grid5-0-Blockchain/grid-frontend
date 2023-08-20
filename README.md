@@ -97,14 +97,8 @@ This dashboard functionality is available to help the customers maintain their o
 2. [React-icons](https://react-icons.github.io/react-icons/)
 3. [Styled-Components](https://styled-components.com/)
 4. [Firebase](https://firebase.google.com/)
-5. [Stripe](https://stripe.com/)
-6. [Formspree](https://formspree.io/)
-
-#### [Admin panel](https://github.com/varunKT001/tomper-wear-ecommerce-admin)
-
-1. [React.js](https://reactjs.org/)
-2. [Chakra-ui](https://chakra-ui.com/)
-3. [React-icons](https://react-icons.github.io/react-icons/)
+5. [Formspree](https://formspree.io/)
+6. [Material-ui](https://mui.com/material-ui/)
 
 #### [Backend](https://github.com/varunKT001/tomper-wear-ecommerce-backend)
 
@@ -114,7 +108,6 @@ This dashboard functionality is available to help the customers maintain their o
 4. [JWT](https://jwt.io/)
 5. [Cloudinary](https://cloudinary.com/)
 6. [Bcrypt.js](https://github.com/dcodeIO/bcrypt.js)
-7. [Stripe](https://stripe.com/)
 
 ## 🛠 Installation and setup
 
