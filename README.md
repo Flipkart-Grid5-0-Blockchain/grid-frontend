@@ -103,7 +103,7 @@ This dashboard functionality is available to help the customers maintain their o
 
 #### [Blockchain](https://github.com/varunKT001/tomper-wear-ecommerce-backend)
 
-1. [Hardhar](https://hardhat.org/)
+1. [Hardhat](https://hardhat.org/)
 2. [Ethers](https://docs.ethers.org/v5/)
 
 ## 🛠 Installation and setup
