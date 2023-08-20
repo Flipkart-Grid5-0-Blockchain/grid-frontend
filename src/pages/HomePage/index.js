@@ -5,6 +5,9 @@ import { createClient } from '@supabase/supabase-js';
 import { FeaturedProducts, Hero, Services, Contact } from '../../components';
 import { useUserContext } from '../../context/user_context';
 import { connect } from '../../utils/constants';
+import ContractABI from '../../utils/Contract-Constants/abi.json';
+import ContractAddresses from '../../utils/Contract-Constants/address.json';
+import RewardABI from '../../utils/Contract-Constants/rewardAbi.json';
 
 const HomePage = () => {
   const [provider, setProvider] = useState(null);
@@ -19,29 +22,26 @@ const HomePage = () => {
   const dataArray = [
     {
       type: 1,
-      expiry: new Date('2023-10-31T12:00:00'), // Example expiry date in the future
+      expiry: new Date('2023-08-31'),
       amount: 100,
+      brandId: 1,
+      brandAddress: '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65',
     },
     {
-      type: 20,
-      expiry: new Date('2023-09-15T18:00:00'), // Example expiry date in the future
+      type: 2,
+      expiry: new Date('2023-09-15'),
       amount: 50,
+      brandId: 2,
+      brandAddress: '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65',
     },
     {
       type: 1,
-      expiry: new Date('2023-08-20T09:00:00'), // Example expiry date in the past
-      amount: 200,
+      expiry: new Date('2023-08-25'),
+      amount: 75,
+      brandId: 1,
+      brandAddress: '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65',
     },
-    {
-      type: 4,
-      expiry: new Date('2023-08-31T12:00:00'), // Example expiry date in the future
-      amount: 100000,
-    },
-    {
-      type: 45679,
-      expiry: new Date('2023-08-31T12:00:00'), // Example expiry date in the future
-      amount: 10000000,
-    },
+    // ... add more dummy data
   ];
 
   async function getProviderAndSigner() {
@@ -63,19 +63,22 @@ const HomePage = () => {
       const { data } = await supabase
         .from('tokensdata') // Replace with your table name
         .select('transactions')
-        .eq('email', 'ww@gmail.com');
+        .eq('email', email);
       console.log(data);
 
       let availableCoins = 0;
       let brandCoins = 0;
       const temporaryArray = [];
+      const brandDeductions = {}; // Object to store brand deductions
+      const brandAddressesArray = [];
+      const deductionAmountsArray = [];
 
       // Get the current time
       const currentTime = new Date();
 
       // Process each JSON object in the array
       dataArray.forEach((data) => {
-        const { type, expiry, amount } = data;
+        const { type, expiry, amount, brandId, brandAddress } = data;
 
         // Check if the expiry time is greater than the current time
         if (expiry > currentTime) {
@@ -84,15 +87,28 @@ const HomePage = () => {
           //Parallely also calculate decrement in available coins and reedem brand rewards and also update on the blockchain
           if (type === 1) {
             brandCoins += amount;
+
+            // Store brand deductions
+            if (!brandDeductions[brandAddress]) {
+              brandDeductions[brandAddress] = 0;
+            }
+            brandDeductions[brandAddress] += amount;
           } else {
             availableCoins += amount;
           }
         }
       });
 
+      for (const [brandAddress, deductionAmount] of Object.entries(
+        brandDeductions
+      )) {
+        brandAddressesArray.push(brandAddress);
+        deductionAmountsArray.push(deductionAmount);
+      }
+
       // Now temporaryArray contains filtered objects
       console.log('Temporary Array:', temporaryArray);
-
+      console.log(brandAddressesArray, deductionAmountsArray);
       // Final values of availableCoins and brandCoins
       console.log('Available Coins:', availableCoins);
       console.log('Brand Coins:', brandCoins);
@@ -105,6 +121,34 @@ const HomePage = () => {
         .eq('email', 'ww@gmail.com')
         .select();
 
+      //Update the thing parallely on databse as well as blockchain
+      const _provider = await new ethers.BrowserProvider(window.ethereum);
+      const _signer = await _provider.getSigner();
+      console.log(provider, _signer.address);
+
+      const contractAddress = ContractAddresses['31337']['Governance'];
+
+      const Governance = await new ethers.Contract(
+        contractAddress,
+        ContractABI,
+        _provider
+      );
+      console.log(Governance);
+
+      try {
+        const tx = await Governance.connect(_signer).expireTokens(
+          brandCoins,
+          brandAddressesArray,
+          deductionAmountsArray,
+          availableCoins
+        );
+        await tx.wait();
+
+        console.log('Transaction successful:', tx);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+
       if (error) {
         console.error('Error updating data:', error);
       } else {
@@ -112,10 +156,8 @@ const HomePage = () => {
       }
     } catch (err) {
       console.log(err);
-      alert('Some error occurred');
+      // alert('Some error occurred');
     }
-
-    //Update the thing parallely on databse as well as blockchain
   }
 
   useEffect(() => {

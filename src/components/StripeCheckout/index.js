@@ -110,12 +110,29 @@ const CheckoutForm = () => {
       /*This has to be put in the login page */
       const tx1 = await Governance.connect(_signer).registerUser('sam');
       await tx1.wait();
+      console.log(kart);
+
+      const data = await Governance.connect(_signer).getUserTotalCoins(
+        _signer.address
+      );
+      console.log(parseInt(data));
+
+      if (parseInt(data) > kart && kart != 0) {
+        const tx2 = await Governance.connect(_signer).redeemCoins(kart);
+        await tx2.wait();
+        //And we will traverse the supabase array and update the coins
+      }
       const tx = await Governance.connect(_signer).purchaseItem(
         1000000,
         '0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65'
       );
       await tx.wait();
       console.log(tx);
+
+      const data1 = await Governance.connect(_signer).getUserTotalCoins(
+        _signer.address
+      );
+      console.log(parseInt(data1));
     } catch (error) {
       if (error.data) {
         const decodedError = Governance.interface.parseError(error.data);

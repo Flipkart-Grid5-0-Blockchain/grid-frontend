@@ -3,7 +3,7 @@ import Wrapper from './styles';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@material-ui/data-grid';
 import Card from '../../components/Card';
-import { GiftCard } from '../../components';
+import { GiftCard, CoinSend } from '../../components';
 import { cardsData } from '../../Data/Data';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
@@ -150,12 +150,7 @@ const CustomerDashBoard = () => {
             />
           </div>
 
-          <Card
-            title='Send Coins'
-            color={cardsData[0].color}
-            value={2}
-            type={1}
-          />
+          <CoinSend />
         </div>
 
         <div className='mid-heading'>GIFT COUPONS</div>
