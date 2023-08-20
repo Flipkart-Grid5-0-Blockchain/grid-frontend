@@ -2,7 +2,10 @@
 <img src='./src/assets/logo.svg'  width='25%'>
 </p>
 <p align='center'>
-<b>E-commerce web-application for selling clothing essentials</b>
+<b>
+Empowering Shopping Through Web3: Experience SmartKart's Revolutionary Token-Powered E-Commerce.
+</b>
+
 </p>
 <p align='center'>
 <a href='https://tomper-wear.netlify.app/' target='_blank'>tomper-wear.netlify.app</a>
@@ -15,7 +18,7 @@ This is the frontend of TomperWear build with MERN stack and deployed with <a hr
 </p>
 
 <p align='center'>
-<img src='./assets/dpmain.png'>
+<img src='./assets/Smartkart-Home.png'>
 </p>
 
 ## 🚀 Link to [Admin panel](https://github.com/varunKT001/tomper-wear-ecommerce-admin), [Backend](https://github.com/varunKT001/tomper-wear-ecommerce-backend)
@@ -26,7 +29,13 @@ This is the frontend of TomperWear build with MERN stack and deployed with <a hr
 
 ## 🧾 Description
 
-TomperWear is an E-commerce platform for small bussiness owners who want to expand their bussiness by providing an online purchase solution to their customers.
+In the dynamic landscape of online shopping, a revolutionary transformation is underway with the emergence of SmartKart—an avant-garde e-commerce platform that leverages the cutting-edge capabilities of Web3 technology. SmartKart isn't just another online marketplace; it's a paradigm shift that combines the convenience of digital retail with the decentralized power of blockchain.
+
+At the core of SmartKart's ethos lies its pioneering tokenomics framework, which redefines customer engagement and loyalty. By integrating its proprietary token system, SmartKart rewards its dedicated patrons with tokens that extend beyond traditional perks, transcending into a realm of decentralized incentives. These tokens don't just represent transactional value; they signify a community-driven ecosystem where customers become stakeholders, sharing in the success and growth of the platform.
+
+SmartKart's commitment to transparency, security, and authenticity is underpinned by Web3 technology, ensuring every interaction is verifiable and tamper-proof on the blockchain. Through this innovative architecture, users can explore an extensive array of products from trusted vendors while enjoying unparalleled data privacy and control.
+
+Join us as we embark on a journey to reshape the future of online shopping. With SmartKart, the convergence of Web3 prowess and customer-centric tokenomics marks a new era in e-commerce—one where empowerment, innovation, and inclusivity thrive. Welcome to the dawn of a smarter shopping experience; welcome to SmartKart.
 
 ## ✨ Features
 
