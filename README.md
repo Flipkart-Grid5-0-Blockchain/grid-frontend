@@ -6,22 +6,10 @@
 Empowering Shopping Through Web3: Experience SmartKart's Revolutionary Token-Powered E-Commerce.
 </b>
 
-</p>
-<p align='center'>
-<a href='https://tomper-wear.netlify.app/' target='_blank'>tomper-wear.netlify.app</a>
-</p>
-
----
-
-<p align='center'>
-This is the frontend of TomperWear build with MERN stack and deployed with <a href='https://www.netlify.com/' target='_blank'>Netlify</a>
-</p>
 
 <p align='center'>
 <img src='./assets/Smartkart-Home.png'>
 </p>
-
-## 🚀 Link to [Admin panel](https://github.com/varunKT001/tomper-wear-ecommerce-admin), [Backend](https://github.com/varunKT001/tomper-wear-ecommerce-backend)
 
 ## 📷 Link to [Screenshots](./SCREENSHOTS.md)
 
