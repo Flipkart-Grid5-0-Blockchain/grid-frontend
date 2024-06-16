@@ -13,7 +13,7 @@ Empowering Shopping Through Web3: Experience SmartKart's Revolutionary Token-Pow
 
 ## 📷 Link to [Screenshots](./SCREENSHOTS.md)
 
-## 🎥 Link to [Video demo](https://youtu.be/5oGqxtSN0jY)
+## 🎥 Link to [Video demo](https://www.youtube.com/watch?v=QQskLAJ6yng))
 
 ## 🧾 Description
 
@@ -118,6 +118,9 @@ This dashboard functionality is available to help the customers maintain their o
    ```javascript
    npm run build
    ```
+
+
+To access backend repository click on [Blockchain]([https://github.com/Smr0303/Movie-Backend.git](https://github.com/Flipkart-Grid5-0-Blockchain/blockchain)).
 
 ## 😎 Team Members
 
