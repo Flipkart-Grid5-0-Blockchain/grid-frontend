@@ -154,67 +154,69 @@ Empowering Shopping Through Web3: Experience SmartKart's Revolutionary Token-Pow
 <img src='./assets/home.png'>
 </p>
 
-## 📷 Link to [Screenshots](./SCREENSHOTS.md)
+## Overview
 
-## 🎥 Link to [Video demo](https://www.youtube.com/watch?v=QQskLAJ6yng))
+This project is a Transaction Management API designed for managing and interacting with transaction data. The API supports various operations, including creating transactions, retrieving details, searching, generating reports, and more. Additionally, a user-friendly dashboard allows for filtering, sorting, and controlling automated transaction generation.
 
-## 🧾 Description
+---
 
-In the dynamic landscape of online shopping, a revolutionary transformation is underway with the emergence of SmartKart—an avant-garde e-commerce platform that leverages the cutting-edge capabilities of Web3 technology. SmartKart isn't just another online marketplace; it's a paradigm shift that combines the convenience of digital retail with the decentralized power of blockchain.
+## Features
 
-At the core of SmartKart's ethos lies its pioneering tokenomics framework, which redefines customer engagement and loyalty. By integrating its proprietary token system, SmartKart rewards its dedicated patrons with tokens that extend beyond traditional perks, transcending into a realm of decentralized incentives. These tokens don't just represent transactional value; they signify a community-driven ecosystem where customers become stakeholders, sharing in the success and growth of the platform.
+### Core Functionality
+- **Transaction Model**: Schema includes fields such as `Transaction ID`, `Amount`, `Description`, `Date/Time`, and more.
+- **API Endpoints**:
+  - Create a transaction.
+  - Retrieve transaction details by `Transaction ID`.
+  - Search transactions by various criteria (e.g., amount, date range, description).
+  - Generate transaction reports (e.g., summaries for specific periods or total amounts).
+- **Pagination**: Paginated responses for efficient data handling.
 
-SmartKart's commitment to transparency, security, and authenticity is underpinned by Web3 technology, ensuring every interaction is verifiable and tamper-proof on the blockchain. Through this innovative architecture, users can explore an extensive array of products from trusted vendors while enjoying unparalleled data privacy and control.
+### Dashboard
+- Filter transactions by `User IDs`, `Date`, `Description`, and `Tags`.
+- Sort transactions by `Amount` and `Timestamp`.
+- Control a CRON Job for automated transaction generation.
 
-Join us as we embark on a journey to reshape the future of online shopping. With SmartKart, the convergence of Web3 prowess and customer-centric tokenomics marks a new era in e-commerce—one where empowerment, innovation, and inclusivity thrive. Welcome to the dawn of a smarter shopping experience; welcome to SmartKart.
+### CRON Job
+- Automatically generates transactions every second.
+- Can be started or stopped via the dashboard.
 
-## ✨ Features
+### Optimization
+- Indexed database for fast retrieval and searching.
+- Dockerized for easy deployment and scalability.
+- Designed for scalability and performance.
 
-#### Client
+### Bonus Features (Optional)
+- Authentication and authorization for securing endpoints.
+- Downloadable reports in CSV format.
+- Advanced search functionalities (e.g., partial matches or multi-criteria searches).
+- Input validation and error handling.
+- Unit and integration tests for critical components.
 
-Users shopping through this platform enjoys following features:
+---
 
-- [x] User authentication using google firebase.
-- [x] Users can change their username and display image.
-- [x] Users can filter products on various parameters.
-- [x] Users can sort products according to price and name.
-- [x] Users can add products to cart.
-- [x] Users can order products by providing their shipping information and card details for payments.
-- [x] Users can view their order's status and their previous orders.
-- [x] Users can review the products (or update their previous reviews) and benefit other customers.
-- [x] Users can send feedbacks to the owner.
-- [x] Responsive for all screen sizes.
+## Tech Stack
 
-Following are some of the unique features and technologies implemented in Smartkart utilizing blockchain technology and an innovative token economics:
+- **Backend**: Typescript, Javascript, Python, Go, or Rust
+- **Database**: MongoDB, DynamoDB, PostgreSQL, MySQL (select based on project needs)
+- **Other**: Docker for containerization, CRON Jobs for automation
 
-- [x] <b>Decentralized Shopping Experience</b>: SmartKart utilizes Web3 technology to ensure secure, transparent, and tamper-proof transactions on the blockchain, guaranteeing a trusted shopping environment.
-- [x] <b>Token Reward System:</b> Our platform introduces a novel tokenomics framework, rewarding loyal customers with exclusive tokens for their purchases. These tokens grant customers a stake in the platform's growth and success.
-- [x] <b>Customer Incentivization:</b> Users are incentivized to leave genuine product reviews through token rewards. Our proprietary algorithm evaluates the authenticity of reviews, fostering a community-driven, honest feedback loop.
-- [x] <b>Verified Vendor Network:</b> SmartKart partners with trusted vendors, verified on the blockchain, ensuring that customers have access to high-quality products from reputable sources.
-- [x] <b>Data Privacy and Control:</b> Our decentralized architecture grants users greater control over their personal data, ensuring data privacy is upheld without compromising the shopping experience.
-- [x] <b>Token Utility:</b> SmartKart tokens go beyond transactional value; they can be used to unlock discounts, access exclusive promotions, and participate in platform governance decisions.
-- [x] <b>Community Engagement:</b> The token-powered ecosystem encourages active user participation, building a vibrant community of shoppers, vendors, and stakeholders.
-- [x] <b>Token Wallet:</b> Every user gets a secure digital wallet to store and manage their earned tokens, enabling easy tracking and redemption of rewards.
+---
 
-We are also proposing an exclusive feature of <b>Review Incentivization</b> that is implemented for the first time in Smartkart:
+## Setup Instructions
 
-- [ ] <b> Authenticity Algorithm:</b> SmartKart employs a sophisticated algorithm that evaluates the genuineness of product reviews. Users are rewarded with tokens for leaving honest feedback, driving meaningful interactions.
-- [ ] <b>Trustworthy Feedback:</b> With the blockchain verifying review authenticity, customers can rely on accurate feedback, making informed purchasing decisions.
+### Prerequisites
+1. Install [Docker](https://www.docker.com/).
+2. Install the required dependencies for your selected programming language (e.g., Node.js, Python).
 
-#### Dashboards
-
-Smartkart provides it's users an easy to use dashboard interface.
-
-**1. Seller Dashboard**
-This is the dashboard which is available for the aid of sellers. Sellers can keep a track of teir dispatcked orders and transactions made with customers.
+### Steps to Run
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd <repository-name>
 
 <p align='center'>
 <img src='./assets/register-new.png'>
 </p>
-
-**2. Customer Dashboard**
-
-This dashboard functionality is available to help the customers maintain their order history and also to keep track of the tokens that they have received from different brands.
 
 <p align='center'>
 <img src='./assets/create-transaction.png'>
