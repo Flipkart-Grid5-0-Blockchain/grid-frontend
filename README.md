@@ -268,31 +268,4 @@ This project is a Transaction Management API designed for managing and interacti
    npm start
    ```
 
-## 🏎 Creating production built
-
-1. Create a production ready react app using the command :
-
-   ```javascript
-   npm run build
-   ```
-
-
-To access backend repository click on [Blockchain]([https://github.com/Smr0303/Movie-Backend.git](https://github.com/Flipkart-Grid5-0-Blockchain/blockchain)).
-
-## 😎 Team Members
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="./assets/ishaan.jpeg" width="150px" alt="GSSoC'22" />
-      <br/>
-      Ishaan Sharma
-      <br/>
-      2020IMT-040
-      <br/>
-      <a href="https://www.linkedin.com/in/ishaan-sharma-195770202/">LinkedIn</a>
-      <a href="https://github.com/sharmaishaan21">Github</a>
-    </td>
-  </tr>
-</table>
 
